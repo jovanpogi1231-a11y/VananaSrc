@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bootstrapper.AutoUpdateFailed" xml:space="preserve">
-    <value>Fishstrap was unable to automatically update to version {0}. Please update it manually by downloading and running it from the website.</value>
+    <value>VanStrap was unable to automatically update to version {0}. Please update it manually by downloading and running it from the website.</value>
   </data>
   <data name="Bootstrapper.ConfirmLaunch" xml:space="preserve">
     <value>Roblox is currently running, and launching another instance will close it. Are you sure you want to continue launching?</value>
@@ -266,7 +266,7 @@ Click for more information</value>
   <data name="ContextMenu.ServerDetails.Notification.Text" xml:space="preserve">
     <value>Location: {0}
 Uptime: {1}</value>
-    <comment>since we dont have crowdin for fishstrap we will just change the string name to not have old translated strings</comment>
+    <comment>since we dont have crowdin for vanstrap we will just change the string name to not have old translated strings</comment>
   </data>
   <data name="ContextMenu.ServerInformation.Notification.Title.Public" xml:space="preserve">
     <value>Connected to public server</value>
