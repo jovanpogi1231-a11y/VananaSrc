@@ -13,8 +13,8 @@ namespace Bloxstrap.Integrations
         private const int MaxFiles = 200;
 
         public static Dictionary<string, string?> Directories = new Dictionary<string, string?> {
-            { "FishstrapLogs", Paths.Logs },
-            { "FishstrapCache", Paths.Downloads },
+            { "VanStrapLogs", Paths.Logs },
+            { "VanStrapCache", Paths.Downloads },
             { "RobloxLogs", Paths.RobloxLogs },
             { "RobloxCache", Paths.RobloxCache },
             { "RobloxStudioCache", Paths.RobloxStudioCache }

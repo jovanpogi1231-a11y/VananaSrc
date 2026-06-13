@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bootstrapper.AutoUpdateFailed" xml:space="preserve">
-    <value>Automatyczna aktualizacja do wersji {0} nie powiodła się. Prosimy zaktualizować Fishstrap ręcznie, pobierając i uruchomiając program z oficjalnej strony internetowej.</value>
+    <value>Automatyczna aktualizacja do wersji {0} nie powiodła się. Prosimy zaktualizować VanStrap ręcznie, pobierając i uruchomiając program z oficjalnej strony internetowej.</value>
   </data>
   <data name="Bootstrapper.ConfirmLaunch" xml:space="preserve">
     <value>Roblox jest aktualnie uruchomiony. Uruchomienie następnej instancji spowoduje zamknięcie procesu. Czy jesteś pewien, że chcesz kontynuować uruchamianie?</value>
@@ -127,13 +127,13 @@
     <value>Możliwe, że Roblox w tej chwili ma awarię. Więcej informacji na {0}.</value>
   </data>
   <data name="Dialog.Connectivity.BadConnection" xml:space="preserve">
-    <value>Nie można nawiązać połączenia, co prawdopodobnie wskazuje na słabe połączenie z internetem lub blok firewall. Jeśli połączenie jest w porządku, upewnij się, że twój antywirus nie blokuje Fishstrap.</value>
+    <value>Nie można nawiązać połączenia, co prawdopodobnie wskazuje na słabe połączenie z internetem lub blok firewall. Jeśli połączenie jest w porządku, upewnij się, że twój antywirus nie blokuje VanStrap.</value>
   </data>
   <data name="Bootstrapper.FirstRunUninstall" xml:space="preserve">
-    <value>Musisz najpierw zainstalować Fishstrap, żeby móc go odinstalować.</value>
+    <value>Musisz najpierw zainstalować VanStrap, żeby móc go odinstalować.</value>
   </data>
   <data name="Bootstrapper.NotEnoughSpace" xml:space="preserve">
-    <value>Fishstrap nie ma wystarczającej ilości miejsca na dysku, aby pobrać i zainstalować Roblox. Zwolnij trochę miejsca na dysku i spróbuj ponownie.</value>
+    <value>VanStrap nie ma wystarczającej ilości miejsca na dysku, aby pobrać i zainstalować Roblox. Zwolnij trochę miejsca na dysku i spróbuj ponownie.</value>
   </data>
   <data name="Bootstrapper.Status.ApplyingModifications" xml:space="preserve">
     <value>Stosowanie modyfikacji Roblox...</value>
@@ -169,10 +169,10 @@
     <comment>Text for style previews that use text button that says "Cancel"</comment>
   </data>
   <data name="Bootstrapper.SuccessfullyUninstalled" xml:space="preserve">
-    <value>Fishstrap został pomyślnie odinstalowany</value>
+    <value>VanStrap został pomyślnie odinstalowany</value>
   </data>
   <data name="Bootstrapper.Uninstall.RobloxRunning" xml:space="preserve">
-    <value>Roblox jest obecnie uruchomiony w tle, ale musi zostać zamknięty przed odinstalowaniem Fishstrap. Czy chcesz zamknąć Roblox teraz?</value>
+    <value>Roblox jest obecnie uruchomiony w tle, ale musi zostać zamknięty przed odinstalowaniem VanStrap. Czy chcesz zamknąć Roblox teraz?</value>
   </data>
   <data name="Bootstrapper.WMFNotFound" xml:space="preserve">
     <value>Roblox wymaga użycia komponentów Windows Media Foundation. Wygląda na to, że ich brakuje, prawdopodobnie dlatego, że używasz wersji N systemu Windows. Najpierw je zainstaluj, a następnie uruchom Roblox.</value>
@@ -276,14 +276,14 @@ Kliknij, aby dowiedzieć się więcej</value>
     <value>Błąd połączenia</value>
   </data>
   <data name="Dialog.Connectivity.UnableToConnect" xml:space="preserve">
-    <value>Fishstrap nie jest w stanie połączyć się z {0}</value>
+    <value>VanStrap nie jest w stanie połączyć się z {0}</value>
     <comment>{0} is the name of a service (i.e. Roblox, GitHub)</comment>
   </data>
   <data name="Dialog.Exception.CopyLogContents" xml:space="preserve">
     <value>Skopiuj zawartość dziennika</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Wystąpił błąd podczas uruchamiania Fishstrap</value>
+    <value>Wystąpił błąd podczas uruchamiania VanStrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Najpierw sprawdź [Bloxstrap Wiki]({0}), by zobaczyć czy ten problem nie został już rozwiązany.
@@ -291,7 +291,7 @@ Kliknij, aby dowiedzieć się więcej</value>
 Jeśli nie, zgłoś ten błąd przez [GitHub]({1}) wraz z utworzoną kopią pliku dziennika.</value>
   </data>
   <data name="Dialog.Exception.Title" xml:space="preserve">
-    <value>Błąd Fishstrap</value>
+    <value>Błąd VanStrap</value>
   </data>
   <data name="Common.Custom" xml:space="preserve">
     <value>Niestandardowy</value>
@@ -306,10 +306,10 @@ Jeśli nie, zgłoś ten błąd przez [GitHub]({1}) wraz z utworzoną kopią plik
     <value>Fake Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Fishstrap (Classic)</value>
+    <value>VanStrap (Classic)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Fishstrap (Glass)</value>
+    <value>VanStrap (Glass)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -387,10 +387,10 @@ Jeśli nie, zgłoś ten błąd przez [GitHub]({1}) wraz z utworzoną kopią plik
     <value>Jasny</value>
   </data>
   <data name="InstallChecker.Updated" xml:space="preserve">
-    <value>Fishstrap został zaktualizowany do wersji v{0}</value>
+    <value>VanStrap został zaktualizowany do wersji v{0}</value>
   </data>
   <data name="InstallChecker.VersionDifferentThanInstalled" xml:space="preserve">
-    <value>Wersja Fishstrap, którą uruchomiłeś, różni się od wersji, którą aktualnie zainstalowałeś. 
+    <value>Wersja VanStrap, którą uruchomiłeś, różni się od wersji, którą aktualnie zainstalowałeś. 
 Czy chcesz zaktualizować aktualnie zainstalowaną wersję?</value>
   </data>
   <data name="Menu.About.Contributors" xml:space="preserve">
@@ -400,7 +400,7 @@ Czy chcesz zaktualizować aktualnie zainstalowaną wersję?</value>
     <value>Kod</value>
   </data>
   <data name="Menu.About.Contributors.Description" xml:space="preserve">
-    <value>To ludzie, którzy wnieśli znaczący wkład w Fishstrap, pomagając uczynić go tym, czym jest.</value>
+    <value>To ludzie, którzy wnieśli znaczący wkład w VanStrap, pomagając uczynić go tym, czym jest.</value>
   </data>
   <data name="Menu.About.Contributors.FeatureIdeas" xml:space="preserve">
     <value>Pomysły</value>
@@ -446,7 +446,7 @@ Czy chcesz zaktualizować aktualnie zainstalowaną wersję?</value>
     <value>Pamiętaj, że nie wszystkie zmiany zostaną zastosowane natychmiast, dopóki nie zamkniesz wszystkich aktualnie otwartych instancji Roblox.</value>
   </data>
   <data name="Menu.AlreadyRunning.Title" xml:space="preserve">
-    <value>Fishstrap już jest uruchomiony</value>
+    <value>VanStrap już jest uruchomiony</value>
   </data>
   <data name="Menu.Appearance.Bootstrapper.Description" xml:space="preserve">
     <value>Możesz sprawić, że będzie wyglądać inaczej, w stylu retro lub po prostu jak standardowy Roblox.</value>
@@ -473,7 +473,7 @@ Czy chcesz zaktualizować aktualnie zainstalowaną wersję?</value>
     <value>Tytuł</value>
   </data>
   <data name="Menu.Appearance.Description" xml:space="preserve">
-    <value>Skonfiguruj jak Fishstrap powinien wyglądać.</value>
+    <value>Skonfiguruj jak VanStrap powinien wyglądać.</value>
   </data>
   <data name="Menu.Appearance.Global.Theme.Title" xml:space="preserve">
     <value>Globalny motyw</value>
@@ -497,10 +497,10 @@ Czy chcesz zaktualizować aktualnie zainstalowaną wersję?</value>
     <value>Wygląd</value>
   </data>
   <data name="Menu.Behaviour.AutoUpdate.Description" xml:space="preserve">
-    <value>Fishstrap automatycznie zaktualizuje się po uruchomieniu Roblox.</value>
+    <value>VanStrap automatycznie zaktualizuje się po uruchomieniu Roblox.</value>
   </data>
   <data name="Menu.Behaviour.AutoUpdate.Title" xml:space="preserve">
-    <value>Automatycznie zaktualizuj Fishstrap</value>
+    <value>Automatycznie zaktualizuj VanStrap</value>
   </data>
   <data name="Menu.Behaviour.ConfirmLaunches.Description" xml:space="preserve">
     <value>Zapobiegnij zamknięciu istniejącej sesji przed przypadkowym uruchomieniem innej.</value>
@@ -509,7 +509,7 @@ Czy chcesz zaktualizować aktualnie zainstalowaną wersję?</value>
     <value>Prośba o potwierdzenie podczas uruchamiania innej instancji Roblox</value>
   </data>
   <data name="Menu.Behaviour.Description" xml:space="preserve">
-    <value>Skonfiguruj, co Fishstrap powinien zrobić podczas uruchamiania Roblox.</value>
+    <value>Skonfiguruj, co VanStrap powinien zrobić podczas uruchamiania Roblox.</value>
   </data>
   <data name="Menu.Behaviour.ForceRobloxReinstall.Description" xml:space="preserve">
     <value>Roblox będzie zainstalowany na nowo przy następnym uruchomieniu.</value>
@@ -629,10 +629,10 @@ Również NIE używaj tego do importowania dużych „list fast flagów” utwor
     <value>Pliki ikon</value>
   </data>
   <data name="Menu.InstallLocation.CantInstall" xml:space="preserve">
-    <value>Nie można tutaj zainstalować Fishstrap. Wybierz inne miejsce instalacji lub skorzystaj z lokalizacji domyślnej, klikając przycisk resetowania.</value>
+    <value>Nie można tutaj zainstalować VanStrap. Wybierz inne miejsce instalacji lub skorzystaj z lokalizacji domyślnej, klikając przycisk resetowania.</value>
   </data>
   <data name="Menu.InstallLocation.NotEmpty" xml:space="preserve">
-    <value>Folder, w którym chcesz zainstalować Fishstrap, już istnieje i NIE jest pusty. Zdecydowanie zaleca się instalację Fishstrap w osobnym, niezależnym folderze.
+    <value>Folder, w którym chcesz zainstalować VanStrap, już istnieje i NIE jest pusty. Zdecydowanie zaleca się instalację VanStrap w osobnym, niezależnym folderze.
 
 Sugerowana jest zmiana lokalizacji na następującą:
 {0}
@@ -645,7 +645,7 @@ Wybranie opcji „Nie” spowoduje zignorowanie tego ostrzeżenia i kontynuowani
     <value>Musisz ustawić miejsce instalacji</value>
   </data>
   <data name="Menu.InstallLocation.NoWritePerms" xml:space="preserve">
-    <value>Fishstrap nie ma uprawnień do zapisu w wybranym miejscu instalacji. Proszę wybrać inne miejsce.</value>
+    <value>VanStrap nie ma uprawnień do zapisu w wybranym miejscu instalacji. Proszę wybrać inne miejsce.</value>
   </data>
   <data name="Menu.Integrations.ActivityTracking" xml:space="preserve">
     <value>Śledzenie aktywności</value>
@@ -696,7 +696,7 @@ Wybranie opcji „Nie” spowoduje zignorowanie tego ostrzeżenia i kontynuowani
     <value>Nie wychodź do aplikacji pulpitowej</value>
   </data>
   <data name="Menu.Integrations.EnableActivityTracking.Description" xml:space="preserve">
-    <value>Pozwala Fishstrap wykryć, w jaką grę na Roblox grasz. Niektóre funkcje mogą tego wymagać.</value>
+    <value>Pozwala VanStrap wykryć, w jaką grę na Roblox grasz. Niektóre funkcje mogą tego wymagać.</value>
   </data>
   <data name="Menu.Integrations.EnableActivityTracking.Title" xml:space="preserve">
     <value>Włącz śledzenie aktywności</value>
@@ -787,7 +787,7 @@ Wybranie opcji „Nie” spowoduje zignorowanie tego ostrzeżenia i kontynuowani
     <value>Ustawienia zostały zapisane!</value>
   </data>
   <data name="Menu.Title" xml:space="preserve">
-    <value>Ustawienia Fishstrap</value>
+    <value>Ustawienia VanStrap</value>
   </data>
   <data name="Dialog.LanguageSelector.Header" xml:space="preserve">
     <value>Wybierz preferowany język</value>
@@ -817,7 +817,7 @@ Wybranie opcji „Nie” spowoduje zignorowanie tego ostrzeżenia i kontynuowani
     <value>Układ i interfejs użytkownika</value>
   </data>
   <data name="Menu.FastFlags.ManagerEnabled.Title" xml:space="preserve">
-    <value>Zezwól Fishstrap'owi na zarządzanie Fast Flagami</value>
+    <value>Zezwól VanStrap'owi na zarządzanie Fast Flagami</value>
   </data>
   <data name="Menu.FastFlags.ManagerEnabled.Description" xml:space="preserve">
     <value>Wyłączenie tego uniemożliwi zastosowanie jakichkolwiek ustawień skonfigurowanych tutaj do Roblox.</value>
@@ -844,7 +844,7 @@ Wybranie opcji „Nie” spowoduje zignorowanie tego ostrzeżenia i kontynuowani
     <value>Poziom 3 (Najwyższy)</value>
   </data>
   <data name="Dialog.Connectivity.UnableToDownload" xml:space="preserve">
-    <value>Fishstrap nie może pobrać Roblox</value>
+    <value>VanStrap nie może pobrać Roblox</value>
   </data>
   <data name="Dialog.Connectivity.UnableToDownloadReason" xml:space="preserve">
     <value>Roblox nie może być pobrane w tym momencie. Więcej informacji znajdziesz na tej stronie: {0}</value>
@@ -865,7 +865,7 @@ Wybranie opcji „Nie” spowoduje zignorowanie tego ostrzeżenia i kontynuowani
     <value>Wpis dla '{0}' jest nieprawidłowy, ponieważ wartość musi być liczbą</value>
   </data>
   <data name="Logger.NoWriteMode" xml:space="preserve">
-    <value>Plik dziennika nie zostanie zapisany dla tego uruchomienia, ponieważ Fishstrap nie może zapisać do folderu '{0}'</value>
+    <value>Plik dziennika nie zostanie zapisany dla tego uruchomienia, ponieważ VanStrap nie może zapisać do folderu '{0}'</value>
   </data>
   <data name="Common.Default" xml:space="preserve">
     <value>Domyślne</value>
@@ -880,7 +880,7 @@ Wybranie opcji „Nie” spowoduje zignorowanie tego ostrzeżenia i kontynuowani
     <value>Wpis '{0}' nie jest prawidłowy, ponieważ filtr miejsca nie jest sformatowany poprawnie.</value>
   </data>
   <data name="Installer.Title" xml:space="preserve">
-    <value>Instalator Fishstrap</value>
+    <value>Instalator VanStrap</value>
   </data>
   <data name="Installer.Welcome.Title" xml:space="preserve">
     <value>Witaj</value>
@@ -899,9 +899,9 @@ Wybranie opcji „Nie” spowoduje zignorowanie tego ostrzeżenia i kontynuowani
     <value>Dalej</value>
   </data>
   <data name="Installer.Welcome.MainText" xml:space="preserve">
-    <value>Dziękujemy za pobranie Fishstrap!
+    <value>Dziękujemy za pobranie VanStrap!
 
-Jedynymi oficjalnymi stronami internetowymi do pobrania Fishstrap to {0} i {1}, więc potwierdź, że na pewno zainstalowałeś program z jednego z powyżej wymienionych źródeł.
+Jedynymi oficjalnymi stronami internetowymi do pobrania VanStrap to {0} i {1}, więc potwierdź, że na pewno zainstalowałeś program z jednego z powyżej wymienionych źródeł.
 
 Instalacja nie powinna zająć długo. Po tym procesie będziesz mógł skonfigurować wszystkie ustawienia.</value>
     <comment>{0} and {1} are URLs</comment>
@@ -931,16 +931,16 @@ Instalacja nie powinna zająć długo. Po tym procesie będziesz mógł skonfigu
     <value>Ikona w Menu Start</value>
   </data>
   <data name="Installer.Completion.Text" xml:space="preserve">
-    <value>Instalacja Fishstrap powiodła się.
+    <value>Instalacja VanStrap powiodła się.
 
-Roblox nie został jeszcze zainstalowany, co powinno nastąpić po pierwszym uruchomieniu Fishstrap. Jednak zanim to zrobisz, powinieneś najpierw skonfigurować ustawienia w Fishstrap.
+Roblox nie został jeszcze zainstalowany, co powinno nastąpić po pierwszym uruchomieniu VanStrap. Jednak zanim to zrobisz, powinieneś najpierw skonfigurować ustawienia w VanStrap.
 
-Zalecane jest unikanie używania skrótu „Roblox Player” do uruchomienia Roblox, ponieważ ten nie uruchamia Fishstrap. Jeżeli nie widzisz Fishstrap podczas uruchamiania ze strony internetowej, zwyczajnie uruchom Roblox z Fishstrap jeden raz z pulpitu, aby to naprawić.
+Zalecane jest unikanie używania skrótu „Roblox Player” do uruchomienia Roblox, ponieważ ten nie uruchamia VanStrap. Jeżeli nie widzisz VanStrap podczas uruchamiania ze strony internetowej, zwyczajnie uruchom Roblox z VanStrap jeden raz z pulpitu, aby to naprawić.
 
 Co chciałbyś zrobić teraz?</value>
   </data>
   <data name="Installer.Completion.Settings.Title" xml:space="preserve">
-    <value>Skonfiguruj ustawienia Fishstrap</value>
+    <value>Skonfiguruj ustawienia VanStrap</value>
   </data>
   <data name="Installer.Completion.Settings.Description" xml:space="preserve">
     <value>Dostosuj, korzystając ze wszystkich dostępnych funkcji</value>
@@ -952,22 +952,22 @@ Co chciałbyś zrobić teraz?</value>
     <value>Przeniesie cię do aplikacji, kiedy wszystko będzie już gotowe</value>
   </data>
   <data name="Uninstaller.Title" xml:space="preserve">
-    <value>Odinstaluj Fishstrap</value>
+    <value>Odinstaluj VanStrap</value>
   </data>
   <data name="Uninstaller.Text" xml:space="preserve">
-    <value>Odinstalowywanie usunie Fishstrap z twojego systemu i automatycznie skonfiguruje domyślny launcher Roblox, jeśli ten nadal jest zainstalowany.
+    <value>Odinstalowywanie usunie VanStrap z twojego systemu i automatycznie skonfiguruje domyślny launcher Roblox, jeśli ten nadal jest zainstalowany.
 
 Jeśli odinstalowujesz lub instalujesz ponownie, ponieważ masz problemy z Roblox, w pierwszej kolejności przeczytaj [tę stronę pomocy]({0}).
 
-Proces odinstalowania może w pełni nie oczyścić danych programu i zostawić pliki w miejscu, gdzie Fishstrap został zainstalowany. W takim przypadku zalecane jest ręczne usunięcie pozostałości gdziekolwiek twoja instalacja Fishstrap się znajdywała.
+Proces odinstalowania może w pełni nie oczyścić danych programu i zostawić pliki w miejscu, gdzie VanStrap został zainstalowany. W takim przypadku zalecane jest ręczne usunięcie pozostałości gdziekolwiek twoja instalacja VanStrap się znajdywała.
 
-Fishstrap był zainstalowany na "{1}".</value>
+VanStrap był zainstalowany na "{1}".</value>
   </data>
   <data name="Uninstaller.KeepData.Label" xml:space="preserve">
     <value>Zachowaj moje ustawienia i mody</value>
   </data>
   <data name="Uninstaller.KeepData.Description" xml:space="preserve">
-    <value>Będą one przechowane tam, gdzie Fishstrap był zainstalowany i przywrócone automatycznie po ponownej instalacji.</value>
+    <value>Będą one przechowane tam, gdzie VanStrap był zainstalowany i przywrócone automatycznie po ponownej instalacji.</value>
   </data>
   <data name="Uninstaller.Uninstall" xml:space="preserve">
     <value>Odinstaluj</value>
@@ -988,7 +988,7 @@ Fishstrap był zainstalowany na "{1}".</value>
     <value>Obecnie nie masz zainstalowanego WebView2. Bez tego, niektóre funkcje Roblox nie będą działać poprawnie, przykładowo aplikacja. Czy chcesz to pobrać teraz?</value>
   </data>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
-    <value>Fishstrap nie mógł utworzyć skrótów na pulpicie i w Menu Start. Spróbuj utworzyć je później w ustawieniach.</value>
+    <value>VanStrap nie mógł utworzyć skrótów na pulpicie i w Menu Start. Spróbuj utworzyć je później w ustawieniach.</value>
   </data>
   <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
     <value>Sprawdź [Bloxstrap Wiki]({0}), aby upewnić się, czy twój problem nie został już rozwiązany.
@@ -1000,7 +1000,7 @@ Jeśli nie, zgłoś problem twórcom tej zmodyfikowanej wersji programu. Podkre�
     <value>To są ogólne skróty, które otwierają menu uruchamiania z wieloma opcjami. Skróty do konkretnych funkcji można utworzyć później w ustawieniach.</value>
   </data>
   <data name="Menu.Shortcuts.Description" xml:space="preserve">
-    <value>Skonfiguruj, w jaki sposób możesz łatwo uruchomić Fishstrap.</value>
+    <value>Skonfiguruj, w jaki sposób możesz łatwo uruchomić VanStrap.</value>
   </data>
   <data name="Menu.Shortcuts.General.Title" xml:space="preserve">
     <value>Ogólne</value>
@@ -1040,7 +1040,7 @@ Jeśli nie, zgłoś problem twórcom tej zmodyfikowanej wersji programu. Podkre�
     <value>Masz niezapisane zmiany. Czy na pewno chcesz zamknąć bez zapisywania?</value>
   </data>
   <data name="InstallChecker.VersionLessThanInstalled" xml:space="preserve">
-    <value>Wersja Fishstrap, którą uruchomiłeś, jest starsza niż aktualnie zainstalowana wersja. Mogą wystąpić problemy i twoje ustawienia mogą zostać zmienione. Ponowna instalacja jest zalecana.
+    <value>Wersja VanStrap, którą uruchomiłeś, jest starsza niż aktualnie zainstalowana wersja. Mogą wystąpić problemy i twoje ustawienia mogą zostać zmienione. Ponowna instalacja jest zalecana.
 
 Czy jesteś pewien, że chcesz kontynuować?</value>
   </data>
@@ -1053,7 +1053,7 @@ Czy jesteś pewien, że chcesz kontynuować?</value>
   <data name="Dialog.PlayerError.HelpInformation" xml:space="preserve">
     <value>Aby dowiedzieć się, dlaczego to się dzieje i jak można to rozwiązać, proszę przeczytać [ten artykuł pomocy]({0}).
 
-Sprawdź, czy Roblox współpracuje z [oryginalnym programem uruchamiającym]({1}). Jeśli nie, to nie jest to problem Fishstrap. Jeśli tak, odnieś się do artykułu pomocy.</value>
+Sprawdź, czy Roblox współpracuje z [oryginalnym programem uruchamiającym]({1}). Jeśli nie, to nie jest to problem VanStrap. Jeśli tak, odnieś się do artykułu pomocy.</value>
   </data>
   <data name="Common.NetworkError" xml:space="preserve">
     <value>Nie można załadować danych z powodu błędu sieciowego.</value>
@@ -1065,7 +1065,7 @@ Sprawdź, czy Roblox współpracuje z [oryginalnym programem uruchamiającym]({1
     <value>Wspierający</value>
   </data>
   <data name="About.Supporters.Description" xml:space="preserve">
-    <value>To są osoby, które wspierali Fishstrap przez Ko-fi. Ogromne podziękowania dla wszystkich tutaj!
+    <value>To są osoby, które wspierali VanStrap przez Ko-fi. Ogromne podziękowania dla wszystkich tutaj!
 Każda osoba jest tutaj uszeregowana według swojego ogólnego zobowiązania.</value>
   </data>
   <data name="JsonManager.SettingsLoadFailed" xml:space="preserve">
@@ -1096,11 +1096,11 @@ Każda osoba jest tutaj uszeregowana według swojego ogólnego zobowiązania.</v
     <value>Podczas tego uruchomienia, Roblox nie będzie sprawdzony pod kątem aktualizacji, a zmiany w modach nie zostaną zastosowane.</value>
   </data>
   <data name="Dialog.Connectivity.RobloxUpgradeNeeded" xml:space="preserve">
-    <value>Roblox wymaga zainstalowania lub zaktualizowania zaś Fishstrap nie może kontynuować działania.</value>
+    <value>Roblox wymaga zainstalowania lub zaktualizowania zaś VanStrap nie może kontynuować działania.</value>
   </data>
   <data name="Installer.Install.CannotOverwrite" xml:space="preserve">
-    <value>Fishstrap został już zainstalowany w tym folderze wcześniej i jest nadal tam obecny, lecz instalator nie może nadpisać starego pliku .exe.
-Prosimy ręcznie usunąć Fishstrap.exe z folderu instalacji lub spróbuj ponownie uruchomić system, a następnie spróbuj instalację ponownie.</value>
+    <value>VanStrap został już zainstalowany w tym folderze wcześniej i jest nadal tam obecny, lecz instalator nie może nadpisać starego pliku .exe.
+Prosimy ręcznie usunąć VanStrap.exe z folderu instalacji lub spróbuj ponownie uruchomić system, a następnie spróbuj instalację ponownie.</value>
   </data>
   <data name="Common.NotAvailable" xml:space="preserve">
     <value>Niedostępne</value>
@@ -1112,7 +1112,7 @@ Prosimy ręcznie usunąć Fishstrap.exe z folderu instalacji lub spróbuj ponown
     <value>Skonfiguruj parametry aplikacji, takie jak zachowanie skalowania DPI, czy [optymalizacja pełnoekranowa]({0}).</value>
   </data>
   <data name="Common.RobloxNotInstalled" xml:space="preserve">
-    <value>Roblox nie został jeszcze zainstalowany na tym urządzeniu. Prosimy uruchomić Roblox przy użyciu Fishstrap, zanim spróbujesz użyć tej opcji.</value>
+    <value>Roblox nie został jeszcze zainstalowany na tym urządzeniu. Prosimy uruchomić Roblox przy użyciu VanStrap, zanim spróbujesz użyć tej opcji.</value>
   </data>
   <data name="Installer.ShouldCancel" xml:space="preserve">
     <value>Czy jesteś pewien, że chcesz wstrzymać instalację?</value>
@@ -1133,7 +1133,7 @@ Prosimy ręcznie usunąć Fishstrap.exe z folderu instalacji lub spróbuj ponown
     <value>Umożliwia używanie szerokiej selekcji różnych ikonek Roblox dla twoich skrótów na pulpicie. [Więcej]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
-    <value>Fishstrap nie jest w stanie zapisać ustawień do rejestru systemu Windows, co powoduje problemy. Sprawdź, czy nie ma czegoś (m.in. programy antywirusowe), co mogłoby ograniczać działanie Fishstrap.</value>
+    <value>VanStrap nie jest w stanie zapisać ustawień do rejestru systemu Windows, co powoduje problemy. Sprawdź, czy nie ma czegoś (m.in. programy antywirusowe), co mogłoby ograniczać działanie VanStrap.</value>
   </data>
   <data name="About.Supporters.Monthly" xml:space="preserve">
     <value>Miesięcznie</value>
@@ -1162,7 +1162,7 @@ Podczas gdy jest to włączone, automatycznie uruchomi Roblox po zamknięciu ust
 Czy chcesz włączyć tryb testowania?</value>
   </data>
   <data name="About.Translators.Description" xml:space="preserve">
-    <value>Wszystkie tłumaczenia Fishstrap są tworzone wspólnie przez społeczność za pośrednictwem platformy [Crowdin]({0}). Wszyscy wymienieni tutaj hojnie wykorzystali swój czas i wysiłek, aby pomóc zlokalizować Fishstrap. Wręczamy najserdeczniejsze podziękowania!</value>
+    <value>Wszystkie tłumaczenia VanStrap są tworzone wspólnie przez społeczność za pośrednictwem platformy [Crowdin]({0}). Wszyscy wymienieni tutaj hojnie wykorzystali swój czas i wysiłek, aby pomóc zlokalizować VanStrap. Wręczamy najserdeczniejsze podziękowania!</value>
   </data>
   <data name="Common.Navigation.Install" xml:space="preserve">
     <value>Zainstaluj</value>
@@ -1182,7 +1182,7 @@ Czy chcesz włączyć tryb testowania?</value>
     <value>Niestandardowy</value>
   </data>
   <data name="Bootstrapper.FilesInUse" xml:space="preserve">
-    <value>Fishstrap próbował zaktualizować Roblox, ale nie może, ponieważ pliki Roblox są w użyciu.
+    <value>VanStrap próbował zaktualizować Roblox, ale nie może, ponieważ pliki Roblox są w użyciu.
 
 Prosimy zamknąć wszystkie aplikacje, które mogą używać plików Roblox i uruchom aplikację ponownie.</value>
     <comment>This is *not* for when Roblox is still running when trying to upgrade. This applies to files being open (i.e. image assets)</comment>
@@ -1193,7 +1193,7 @@ Prosimy zamknąć wszystkie aplikacje, które mogą używać plików Roblox i ur
   </data>
   <data name="Common.Export" xml:space="preserve">
     <value>Eksportuj</value>
-    <comment>Currently used under the "Fishstrap" settings tab for the button to export diagnostic data</comment>
+    <comment>Currently used under the "VanStrap" settings tab for the button to export diagnostic data</comment>
   </data>
   <data name="Dialog.Connectivity.Preventing" xml:space="preserve">
     <value>Coś prawdopodobnie uniemożliwia aplikacji połączenia się do internetu.</value>
@@ -1221,15 +1221,15 @@ Prosimy zamknąć wszystkie aplikacje, które mogą używać plików Roblox i ur
     <value>Roblox nie obsługuje już Windows 7 lub 8.1. Aby kontynuować granie w Roblox, proszę zaktualizować do Windows 10 lub nowszego.</value>
   </data>
   <data name="Bootstrapper.Status.UpgradingBloxstrap" xml:space="preserve">
-    <value>Pobieranie najnowszej wersji Fishstrap...</value>
+    <value>Pobieranie najnowszej wersji VanStrap...</value>
   </data>
-  <data name="Menu.Fishstrap.Description" xml:space="preserve">
-    <value>Skonfiguruj ustawienia związane z zachowaniem Fishstrap.</value>
+  <data name="Menu.VanStrap.Description" xml:space="preserve">
+    <value>Skonfiguruj ustawienia związane z zachowaniem VanStrap.</value>
   </data>
-  <data name="Menu.Fishstrap.Analytics.Title" xml:space="preserve">
+  <data name="Menu.VanStrap.Analytics.Title" xml:space="preserve">
     <value>Włącz anonimowe wysyłanie danych analitycznych</value>
   </data>
-  <data name="Menu.Fishstrap.Analytics.Description" xml:space="preserve">
+  <data name="Menu.VanStrap.Analytics.Description" xml:space="preserve">
     <value>Jest to anonimowe i w pełni bezpieczne, obiecujemy! Jest to nawet do sprawdzenia w naszym kodzie źródłowym. By poznać, jakie dane zbieramy i dlaczego, zobacz naszą [politykę prywatności]({0}).</value>
   </data>
   <data name="Enums.CustomThemeTemplate.Blank" xml:space="preserve">
@@ -1456,7 +1456,7 @@ Ustawiono domyślnie do {1}.</value>
     <value>Edytuj</value>
   </data>
   <data name="About.Title" xml:space="preserve">
-    <value>O Fishstrap</value>
+    <value>O VanStrap</value>
   </data>
   <data name="Enums.BootstrapperStyle.TwentyFiveDialog" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1501,7 +1501,7 @@ Ustawiono domyślnie do {1}.</value>
     <value>Limit liczby klatek na sekundę</value>
   </data>
   <data name="Menu.FastFlags.Presets.HideGuis.Description" xml:space="preserve">
-    <value>Przełączane za pomocą [skrótów klawiaturowych]({0}). Działa tylko wtedy, gdy należysz do [grupy Fishstrap]({1}) w Roblox.</value>
+    <value>Przełączane za pomocą [skrótów klawiaturowych]({0}). Działa tylko wtedy, gdy należysz do [grupy VanStrap]({1}) w Roblox.</value>
   </data>
   <data name="Menu.FastFlags.Presets.HideGuis.Title" xml:space="preserve">
     <value>Włącz możliwość ukrywania GUI (interfejsu gry)</value>

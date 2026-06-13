@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Bloxstrap.Models.SettingTasks.Base
 {
-    public abstract class BoolBaseTask : BaseTask
+    public abstract class BoolBaseTask : BaseTask, System.ComponentModel.INotifyPropertyChanged
     {
+        public event System.ComponentModel.PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         private bool _originalState;
 
         private bool _newState;
@@ -30,7 +34,9 @@ namespace Bloxstrap.Models.SettingTasks.Base
             set
             {
                 _newState = value;
-                
+                OnPropertyChanged(nameof(NewState));
+                OnPropertyChanged(nameof(Changed));
+
                 if (Changed)
                     App.PendingSettingTasks[Name] = this;
                 else

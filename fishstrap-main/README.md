@@ -1,5 +1,5 @@
 > [!CAUTION]
-> The only official places to download Fishstrap are this GitHub repository and
+> The only official places to download VanStrap are this GitHub repository and
 > our website <https://www.fishstrap.app>. Any other websites offering downloads
 > or claiming to be us are not controlled by us, do not download from them.
 
@@ -17,7 +17,7 @@
 
 </div>
 
-Fishstrap (pronounced fish-strap) is a custom bootstrapper for Roblox based on
+VanStrap (pronounced fish-strap) is a custom bootstrapper for Roblox based on
 [Bloxstrap][bloxstrap] (pronounced blox-strap). It provides additional features
 to enhance your experience.
 
@@ -25,7 +25,7 @@ If you found any bugs, please [open an issue here][repo-new-issue] or make a new
 post in [our Discord server][discord-invite]'s `#support-and-bugs` channel.
 
 > [!NOTE]
-> Fishstrap is an application for **Windows 10 and above.** For other operating
+> VanStrap is an application for **Windows 10 and above.** For other operating
 > systems, such as Mac OS and various Linux distributions, you can try
 > [AppleBlox][appleblox] and [Sober][sober] respectively.
 
@@ -38,7 +38,7 @@ post in [our Discord server][discord-invite]'s `#support-and-bugs` channel.
     affect Roblox Studio. [Learn more][devforum-fflags]
 - Global Basic Settings editor
   - Ability to increase frame rate cap, toggle quality levels and more
-- Fishstrap's own game invites
+- VanStrap's own game invites
   - Try it out now — this link will lead you to Crossroads (don't turn left!):
     <https://www.fishstrap.app/v1/joingame?placeId=1818>
 - Cache cleaner, channel switcher and many more
@@ -55,8 +55,8 @@ post in [our Discord server][discord-invite]'s `#support-and-bugs` channel.
 
 </div>
 
-[banner-light]: https://github.com/fishstrap/fishstrap/raw/main/Images/Fishstrap-Light.png#gh-light-mode-only
-[banner-dark]:  https://github.com/fishstrap/fishstrap/raw/main/Images/Fishstrap-Dark.png#gh-dark-mode-only
+[banner-light]: https://github.com/fishstrap/fishstrap/raw/main/Images/VanStrap-Light.png#gh-light-mode-only
+[banner-dark]:  https://github.com/fishstrap/fishstrap/raw/main/Images/VanStrap-Dark.png#gh-dark-mode-only
 
 [badge-license]:   https://img.shields.io/github/license/fishstrap/fishstrap?style=flat-square
 [badge-actions]:   https://img.shields.io/github/actions/workflow/status/fishstrap/fishstrap/ci-release.yml?branch=main&style=flat-square&label=builds

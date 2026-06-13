@@ -15,6 +15,7 @@
 	<AssemblyName>VanStrap</AssemblyName>
     <Product>$(AssemblyName)</Product>
     <RootNamespace>Bloxstrap</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
     
   <ItemGroup>

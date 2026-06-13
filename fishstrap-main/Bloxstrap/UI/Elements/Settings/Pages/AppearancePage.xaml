@@ -193,7 +193,7 @@
         </ui:CardExpander>
 
         <controls:OptionControl Header="{x:Static resources:Strings.Menu_Appearance_CustomisationTitle_Title}" Description="{x:Static resources:Strings.Menu_Appearance_CustomisationTitle_Description}">
-            <ui:TextBox PlaceholderText="Fishstrap" Width="200" Text="{Binding Title, Mode=TwoWay}" />
+            <ui:TextBox PlaceholderText="VanStrap" Width="200" Text="{Binding Title, Mode=TwoWay}" />
         </controls:OptionControl>
 
         <controls:OptionControl x:Name="IconSelector" Header="{x:Static resources:Strings.Menu_Appearance_Icon_Title}" Description="{x:Static resources:Strings.Menu_Appearance_Icon_Description}" HelpLink="https://wiki.fishstrap.app/manual/appearance/#custom-icons">

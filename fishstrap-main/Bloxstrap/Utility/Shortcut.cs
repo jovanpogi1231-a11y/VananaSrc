@@ -16,7 +16,7 @@ namespace Bloxstrap.Utility
                 Directory.CreateDirectory(Path.GetDirectoryName(lnkPath)!);
 
                 // Always recreate the shortcut so reinstalling/updating repairs stale links
-                // that may still point to Fishstrap.exe or another old path.
+                // that may still point to VanStrap.exe or another old path.
                 if (File.Exists(lnkPath))
                     File.Delete(lnkPath);
 

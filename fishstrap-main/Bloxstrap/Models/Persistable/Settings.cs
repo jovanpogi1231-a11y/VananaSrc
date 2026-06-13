@@ -13,7 +13,7 @@ namespace Bloxstrap.Models.Persistable
         public BootstrapperIcon BootstrapperIcon { get; set; } = BootstrapperIcon.IconVanStrap;
         public string BootstrapperTitle { get; set; } = App.ProjectName;
         public string BootstrapperIconCustomLocation { get; set; } = "";
-        public RobloxIcon RobloxIcon { get; set; } = RobloxIcon.IconDefault;
+        public RobloxIcon RobloxIcon { get; set; } = RobloxIcon.IconVanStrap;
         public string RobloxTitle { get; set; } = "Roblox";
         public string RobloxIconCustomLocation { get; set; } = "";
         public Theme Theme { get; set; } = Theme.Default;
@@ -49,7 +49,7 @@ namespace Bloxstrap.Models.Persistable
             "RobloxCache",
             "RobloxStudioCache",
             "RobloxLogs",
-            "FishstrapLogs"
+            "VanStrapLogs"
         };
         public bool FakeBorderlessFullscreen { get; set; } = false;
         public bool EnableActivityTracking { get; set; } = true;

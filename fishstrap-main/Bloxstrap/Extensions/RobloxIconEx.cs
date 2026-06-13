@@ -6,6 +6,7 @@ namespace Bloxstrap.Extensions
     {
         public static IReadOnlyCollection<RobloxIcon> Selections => new RobloxIcon[]
         {
+            RobloxIcon.IconVanStrap,
             RobloxIcon.IconDefault,
             RobloxIcon.Icon2022,
             RobloxIcon.Icon2019,
@@ -53,6 +54,7 @@ namespace Bloxstrap.Extensions
 
             return icon switch
             {
+                RobloxIcon.IconVanStrap => Properties.Resources.IconVanStrap,
                 RobloxIcon.Icon2008 => Properties.Resources.Icon2008,
                 RobloxIcon.Icon2011 => Properties.Resources.Icon2011,
                 RobloxIcon.IconEarly2015 => Properties.Resources.IconEarly2015,

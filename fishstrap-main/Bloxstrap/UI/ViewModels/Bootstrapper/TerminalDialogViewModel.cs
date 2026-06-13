@@ -16,7 +16,7 @@ namespace Bloxstrap.UI.ViewModels.Bootstrapper
         public Brush MainTerminalBackground { get; set; } = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
         public Brush TerminalTitleBarBackground { get; set; } = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
         public string Title => App.Settings.Prop.BootstrapperTitle;
-        public string LaunchArgText { get; set; } = "PS> ./Fishstrap.exe ";
+        public string LaunchArgText { get; set; } = "PS> ./VanStrap.exe ";
         public ImageSource Icon { get; set; } = App.Settings.Prop.BootstrapperIcon.GetIcon().GetImageSource();
         public string Message { get; set; } = string.Empty;
         public bool ProgressIndeterminate { get; set; } = true;

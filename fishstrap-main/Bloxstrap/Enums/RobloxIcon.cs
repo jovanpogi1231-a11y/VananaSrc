@@ -2,6 +2,9 @@
 {
     public enum RobloxIcon
     {
+
+        [EnumName(StaticName = "VanStrap")]
+        IconVanStrap,
         [EnumName(FromTranslation = "Common.Default")]
         IconDefault,
         [EnumName(StaticName = "2008")]

@@ -140,15 +140,15 @@ namespace Bloxstrap.UI.ViewModels.Settings
             }
         }
 
-        public bool CleanerFishstrap
+        public bool CleanerVanStrap
         {
-            get => CleanerItems.Contains("FishstrapLogs");
+            get => CleanerItems.Contains("VanStrapLogs");
             set
             {
                 if (value)
-                    CleanerItems.Add("FishstrapLogs");
+                    CleanerItems.Add("VanStrapLogs");
                 else
-                    CleanerItems.Remove("FishstrapLogs");
+                    CleanerItems.Remove("VanStrapLogs");
             }
         }
     }

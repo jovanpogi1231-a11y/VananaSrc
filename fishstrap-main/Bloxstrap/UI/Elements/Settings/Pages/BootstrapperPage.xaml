@@ -80,7 +80,7 @@
                 <controls:OptionControl 
     Header="{x:Static resources:Strings.Menu_Bootstrapper_Cleaner_IncludeBloxstrap_Title}"
     Description="{x:Static resources:Strings.Menu_Bootstrapper_Cleaner_IncludeBloxstrap_Description}">
-                    <ui:ToggleSwitch IsChecked="{Binding CleanerFishstrap, Mode=TwoWay}" />
+                    <ui:ToggleSwitch IsChecked="{Binding CleanerVanStrap, Mode=TwoWay}" />
                 </controls:OptionControl>
             </StackPanel>
         </ui:CardExpander>
@@ -88,7 +88,7 @@
         <controls:MarkdownTextBlock MarkdownText="A collection of experimental settings. Be careful while using them, as they may or may not work as intended." TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Bootstrapper_AllowCookieAccess_Title}"
-            Description="{Binding Source={x:Static resources:Strings.Menu_Bootstrapper_AllowCookieAccess_Description}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://github.com/fishstrap/fishstrap/wiki/Account-Access#what-will-fishstrap-access-with-your-account'}">
+            Description="{Binding Source={x:Static resources:Strings.Menu_Bootstrapper_AllowCookieAccess_Description}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://github.com/jovanpogi1231-a11y/VananaStrap/wiki'}">
             
             <StackPanel Orientation="Horizontal">
                 <ui:SymbolIcon Symbol="Warning20" Margin="0,2,8,0" Foreground="Orange">
