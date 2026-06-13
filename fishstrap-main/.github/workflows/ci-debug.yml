@@ -15,12 +15,25 @@ jobs:
       run: |
         git submodule update --init --recursive
 
-        if (!(Test-Path ".\wpfui\src\Wpf.Ui\Wpf.Ui.csproj") -and !(Test-Path ".\fishstrap-main\wpfui\src\Wpf.Ui\Wpf.Ui.csproj")) {
-          if (Test-Path ".\Bloxstrap\Bloxstrap.csproj") {
-            git clone https://github.com/fishstrap/wpfui.git .\wpfui
-          } else {
-            git clone https://github.com/fishstrap/wpfui.git .\fishstrap-main\wpfui
+        if (Test-Path ".\Bloxstrap\Bloxstrap.csproj") {
+          $wpfUiPath = ".\wpfui"
+        } else {
+          $wpfUiPath = ".\fishstrap-main\wpfui"
+        }
+
+        $wpfUiProject = Join-Path $wpfUiPath "src\Wpf.Ui\Wpf.Ui.csproj"
+
+        if (!(Test-Path $wpfUiProject)) {
+          if (Test-Path $wpfUiPath) {
+            Remove-Item $wpfUiPath -Recurse -Force
           }
+
+          git clone https://github.com/fishstrap/wpfui.git $wpfUiPath
+        }
+
+        if (!(Test-Path $wpfUiProject)) {
+          Write-Error "Wpf.Ui project was not found at $wpfUiProject"
+          exit 1
         }
 
     - uses: actions/setup-dotnet@v5
