@@ -11,11 +11,15 @@ namespace Bloxstrap.Utility
         {
             const string LOG_IDENT = "Shortcut::Create";
 
-            if (File.Exists(lnkPath))
-                return;
-
             try
             {
+                Directory.CreateDirectory(Path.GetDirectoryName(lnkPath)!);
+
+                // Always recreate the shortcut so reinstalling/updating repairs stale links
+                // that may still point to Fishstrap.exe or another old path.
+                if (File.Exists(lnkPath))
+                    File.Delete(lnkPath);
+
                 ShellLink.Shortcut.CreateShortcut(exePath, exeArgs, exePath, 0).WriteToFile(lnkPath);
 
                 if (_loadStatus != GenericTriState.Successful)

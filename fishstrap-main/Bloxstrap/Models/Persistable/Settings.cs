@@ -10,7 +10,7 @@ namespace Bloxstrap.Models.Persistable
 
         // bloxstrap configuration
         public BootstrapperStyle BootstrapperStyle { get; set; } = BootstrapperStyle.FluentAeroDialog;
-        public BootstrapperIcon BootstrapperIcon { get; set; } = BootstrapperIcon.IconBloxstrap;
+        public BootstrapperIcon BootstrapperIcon { get; set; } = BootstrapperIcon.IconVanStrap;
         public string BootstrapperTitle { get; set; } = App.ProjectName;
         public string BootstrapperIconCustomLocation { get; set; } = "";
         public RobloxIcon RobloxIcon { get; set; } = RobloxIcon.IconDefault;
