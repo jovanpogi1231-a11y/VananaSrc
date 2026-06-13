@@ -13,8 +13,8 @@ jobs:
     - name: Ensure Wpf.Ui dependency
       shell: pwsh
       run: |
-        if (!(Test-Path ".\wpfui\src\Wpf.Ui\Wpf.Ui.csproj")) {
-          git clone https://github.com/fishstrap/wpfui.git .\wpfui
+        if (!(Test-Path ".\fishstrap-main\wpfui\src\Wpf.Ui\Wpf.Ui.csproj")) {
+          git clone https://github.com/fishstrap/wpfui.git .\fishstrap-main\wpfui
         }
 
     - uses: actions/setup-dotnet@v5
