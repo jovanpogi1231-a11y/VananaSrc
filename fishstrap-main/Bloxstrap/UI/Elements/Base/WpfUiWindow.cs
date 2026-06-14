@@ -35,7 +35,7 @@ namespace Bloxstrap.UI.Elements.Base
             const int customThemeIndex = 2; // index for CustomTheme merged dictionary
 
             _themeService.SetTheme(App.Settings.Prop.Theme.GetFinal() == Enums.Theme.Dark ? ThemeType.Dark : ThemeType.Light);
-            _themeService.SetSystemAccent();
+            Accent.Apply(Color.FromRgb(0xE5, 0x39, 0x35));
 
             // there doesn't seem to be a way to query the name for merged dictionaries
             var dict = new ResourceDictionary { Source = new Uri($"pack://application:,,,/UI/Style/{Enum.GetName(App.Settings.Prop.Theme.GetFinal())}.xaml") };
@@ -55,7 +55,7 @@ namespace Bloxstrap.UI.Elements.Base
             //    byte opacity = App.Settings.Prop.AcrylicBackgroundOpacity;
 
             //    if (App.Settings.Prop.Theme.GetFinal() == Enums.Theme.Light)
-            //        this.Resources["MainWindowBackgroundBrush"] = new SolidColorBrush(Color.FromArgb(opacity, 250, 250, 250));
+            //        this.Resources["MainWindowBackgroundBrush"] = new SolidColorBrush(Color.FromArgb(opacity, 250, 250,    250));
             //    else
             //        this.Resources["MainWindowBackgroundBrush"] = new SolidColorBrush(Color.FromArgb(opacity, 32, 32, 32));
             //}

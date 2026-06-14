@@ -29,8 +29,8 @@
     <!--  Background is for Aero theme only  -->
     <Grid Background="{Binding Path=MainWindowBackgroundBrush, Mode=OneTime}">
         <!--  Allow for drag  -->
-        <TextBlock Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="10" FontFamily="{StaticResource Rubik}" Text="{Binding VersionText}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-        <TextBlock Margin="5" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource Rubik}" Text="{Binding ChannelText}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+		<TextBlock Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="10" FontFamily="{StaticResource Rubik}" Text="{Binding VersionText}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+		<TextBlock Margin="5" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource Rubik}" Text="{Binding ChannelText}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
         <ui:TitleBar
             VerticalAlignment="Top"
             CanMaximize="False"
@@ -62,13 +62,13 @@
                 HorizontalAlignment="Center"
                 TextAlignment="Center"
                 FontSize="18"
-                Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                 Text="{Binding Message, Mode=OneWay}"
                 TextWrapping="Wrap" />
 
             <ProgressBar
                 Grid.Row="2"
                 Margin="0,0,0,16"
+				Foreground="{DynamicResource SystemAccentColorSecondaryBrush}"
                 IsIndeterminate="{Binding ProgressIndeterminate, Mode=OneWay}"
                 Maximum="{Binding ProgressMaximum, Mode=OneWay}"
                 Value="{Binding ProgressValue, Mode=OneWay}" />

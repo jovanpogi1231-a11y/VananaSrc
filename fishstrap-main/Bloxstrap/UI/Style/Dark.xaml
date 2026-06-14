@@ -14,7 +14,15 @@
 	<SolidColorBrush x:Key="AccentFillColorDefaultBrush" Color="{StaticResource SystemAccentColorSecondary}" />
 	<SolidColorBrush x:Key="AccentFillColorSecondaryBrush" Color="{StaticResource SystemAccentColorSecondary}" Opacity="0.9" />
 	<SolidColorBrush x:Key="AccentFillColorTertiaryBrush" Color="{StaticResource SystemAccentColorSecondary}" Opacity="0.8" />
-    <SolidColorBrush x:Key="NewTextEditorBackground" Color="#2D2D2D" />
+	<SolidColorBrush x:Key="PaletteAccentBrush" Color="{StaticResource SystemAccentColor}" />
+	<SolidColorBrush x:Key="AccentControlElevationBorderBrush" Color="{StaticResource SystemAccentColorTertiary}" />
+	<SolidColorBrush x:Key="SystemFillColorAttentionBrush" Color="{StaticResource SystemAccentColorSecondary}" />
+	<SolidColorBrush x:Key="SystemFillColorAttentionBackgroundBrush" Color="{StaticResource SystemAccentColorPrimary}" Opacity="0.15" />
+	<SolidColorBrush x:Key="ToggleSwitchFillOnBrush" Color="{StaticResource SystemAccentColorSecondary}" />
+	<SolidColorBrush x:Key="ToggleSwitchFillOnPointerOverBrush" Color="{StaticResource SystemAccentColorPrimary}" />
+	<SolidColorBrush x:Key="ToggleSwitchFillOnPressedBrush" Color="{StaticResource SystemAccentColorTertiary}" />
+	<SolidColorBrush x:Key="ToggleSwitchStrokeOnBrush" Color="{StaticResource SystemAccentColorTertiary}" />
+	<SolidColorBrush x:Key="NewTextEditorBackground" Color="#2D2D2D" />
     <SolidColorBrush x:Key="NewTextEditorForeground" Color="White" />
     <SolidColorBrush x:Key="NewTextEditorLink" Color="#3A9CEA" />
 

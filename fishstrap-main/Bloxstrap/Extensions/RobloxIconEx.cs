@@ -26,13 +26,12 @@ namespace Bloxstrap.Extensions
         {
             const string LOG_IDENT = "RobloxIconEx::GetIcon";
 
-            // load the custom icon file
             if (icon == RobloxIcon.IconCustom)
             {
                 Icon? customIcon = null;
                 string location = App.Settings.Prop.RobloxIconCustomLocation;
 
-                if (String.IsNullOrEmpty(location)) 
+                if (String.IsNullOrEmpty(location))
                 {
                     App.Logger.WriteLine(LOG_IDENT, "Warning: custom icon is not set.");
                 }
@@ -49,12 +48,12 @@ namespace Bloxstrap.Extensions
                     }
                 }
 
-                return customIcon ?? Properties.Resources.IconBloxstrap;
+                return customIcon ?? Properties.Resources.IconVanStrap; // fallback to VanStrap
             }
 
             return icon switch
             {
-                RobloxIcon.IconVanStrap => Properties.Resources.IconVanStrap,
+                RobloxIcon.IconDefault => Properties.Resources.IconBloxstrap,
                 RobloxIcon.Icon2008 => Properties.Resources.Icon2008,
                 RobloxIcon.Icon2011 => Properties.Resources.Icon2011,
                 RobloxIcon.IconEarly2015 => Properties.Resources.IconEarly2015,
@@ -62,7 +61,7 @@ namespace Bloxstrap.Extensions
                 RobloxIcon.Icon2017 => Properties.Resources.Icon2017,
                 RobloxIcon.Icon2019 => Properties.Resources.Icon2019,
                 RobloxIcon.Icon2022 => Properties.Resources.Icon2022,
-                _ => Properties.Resources.IconBloxstrap
+                _ => Properties.Resources.IconVanStrap // default = VanStrap
             };
         }
     }
