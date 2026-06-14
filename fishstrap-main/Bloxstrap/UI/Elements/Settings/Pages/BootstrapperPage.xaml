@@ -132,5 +132,123 @@
                 <ui:ToggleSwitch IsChecked="{Binding EnableFakeBorderlessFullscreen, Mode=TwoWay}" />
             </StackPanel>
         </controls:OptionControl>
+		<controls:OptionControl
+	Header="{x:Static resources:Strings.Menu_Behaviour_MultiInstance_Title}"
+	Description="{x:Static resources:Strings.Menu_Behaviour_MultiInstance_Description}">
+			<ui:ToggleSwitch IsChecked="{Binding MultiInstanceLaunching, Mode=TwoWay}" />
+		</controls:OptionControl>
+		<ui:Card Margin="0,8,0,0">
+			<ui:Card.Style>
+				<Style TargetType="ui:Card" BasedOn="{StaticResource {x:Type ui:Card}}">
+					<Setter Property="Visibility" Value="Collapsed" />
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding CookieAccess}" Value="True">
+							<Setter Property="Visibility" Value="Visible" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</ui:Card.Style>
+
+			<StackPanel>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<StackPanel Grid.Column="0" VerticalAlignment="Center">
+						<TextBlock FontSize="14" Text="{x:Static resources:Strings.Menu_Behaviour_AccountManager_Title}" />
+						<TextBlock Margin="0,2,0,0" FontSize="12" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="{x:Static resources:Strings.Menu_Behaviour_AccountManager_Description}" />
+					</StackPanel>
+					<StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+						<ui:Button Icon="ArrowClockwise16" Content="{x:Static resources:Strings.Menu_Behaviour_AccountManager_Refresh}" Command="{Binding RefreshInstancesCommand}" Margin="0,0,8,0" />
+						<ui:Button Icon="PersonAdd24" Appearance="Primary" Content="{x:Static resources:Strings.Menu_Behaviour_AccountManager_AddAccount}" Command="{Binding AddAccountCommand}" />
+					</StackPanel>
+				</Grid>
+
+				<TextBlock Margin="0,12,0,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="{x:Static resources:Strings.Menu_Behaviour_AccountManager_NoInstances}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding HasRunningInstances}" Value="True">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<ItemsControl Margin="0,8,0,0" ItemsSource="{Binding RobloxInstances}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Border Margin="0,4,0,0" Padding="10" CornerRadius="4" Background="{DynamicResource ControlFillColorDefaultBrush}">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="Auto" />
+									</Grid.ColumnDefinitions>
+
+									<Border Grid.Column="0" Width="40" Height="40" CornerRadius="20" Background="{DynamicResource ControlFillColorSecondaryBrush}" VerticalAlignment="Center">
+										<Grid>
+											<ui:SymbolIcon Symbol="Person24" HorizontalAlignment="Center" VerticalAlignment="Center" />
+											<Ellipse Width="40" Height="40">
+												<Ellipse.Fill>
+													<ImageBrush ImageSource="{Binding Avatar}" Stretch="UniformToFill" />
+												</Ellipse.Fill>
+											</Ellipse>
+										</Grid>
+									</Border>
+
+									<StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+										<TextBlock FontSize="14">
+											<TextBlock.Style>
+												<Style TargetType="TextBlock">
+													<Setter Property="Text" Value="{x:Static resources:Strings.Menu_Behaviour_AccountManager_SignedOut}" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding HasAccount}" Value="True">
+															<Setter Property="Text" Value="{Binding Username}" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</TextBlock.Style>
+										</TextBlock>
+										<TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="{Binding ProcessId, StringFormat='PID: {0}'}" />
+									</StackPanel>
+
+									<StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+										<ui:Button Icon="ArrowEnter24" Content="{x:Static resources:Strings.Menu_Behaviour_AccountManager_Login}" Command="{Binding LoginCommand}" Margin="0,0,8,0">
+											<ui:Button.Style>
+												<Style TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+													<Setter Property="Visibility" Value="Visible" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding HasAccount}" Value="True">
+															<Setter Property="Visibility" Value="Collapsed" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</ui:Button.Style>
+										</ui:Button>
+										<ui:Button Icon="ArrowExit20" Content="{x:Static resources:Strings.Menu_Behaviour_AccountManager_Logout}" Command="{Binding LogoutCommand}" Margin="0,0,8,0">
+											<ui:Button.Style>
+												<Style TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+													<Setter Property="Visibility" Value="Collapsed" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding HasAccount}" Value="True">
+															<Setter Property="Visibility" Value="Visible" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</ui:Button.Style>
+										</ui:Button>
+										<ui:Button Icon="Delete24" Content="{x:Static resources:Strings.Menu_Behaviour_AccountManager_Remove}" Command="{Binding RemoveCommand}" />
+									</StackPanel>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
+		</ui:Card>
     </StackPanel>
 </ui:UiPage>

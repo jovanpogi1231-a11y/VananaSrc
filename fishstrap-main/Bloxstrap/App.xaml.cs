@@ -67,6 +67,8 @@ namespace Bloxstrap
 
         public static readonly CookiesManager Cookies = new();
 
+        public static readonly AccountManager Accounts = new();
+
         public static readonly HttpClient HttpClient = new(
             new HttpClientLoggingHandler(
                 new HttpClientHandler { AutomaticDecompression = DecompressionMethods.All }
@@ -320,8 +322,10 @@ namespace Bloxstrap
                 GlobalSettings.Load();
 
                 if (Settings.Prop.AllowCookieAccess)
+                { 
                     Task.Run(Cookies.LoadCookies);
-
+                    Accounts.Load();
+                }
                 if (!Locale.SupportedLocales.ContainsKey(Settings.Prop.Locale))
                 {
                     Settings.Prop.Locale = "nil";

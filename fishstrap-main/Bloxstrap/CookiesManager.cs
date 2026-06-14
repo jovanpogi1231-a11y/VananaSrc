@@ -54,6 +54,113 @@ namespace Bloxstrap
 
         public async Task<HttpResponseMessage> AuthGet(Uri? uri) => await AuthRequest(new HttpRequestMessage { RequestUri = uri, Method = HttpMethod.Get });
         public async Task<HttpResponseMessage> AuthPost(Uri? uri, HttpContent? content) => await AuthRequest(new HttpRequestMessage { RequestUri = uri, Content = content, Method = HttpMethod.Post });
+        public string? GetActiveCookie()
+        {
+            if (!Enabled || string.IsNullOrEmpty(AuthCookie))
+                return null;
+
+            return AuthCookie;
+        }
+
+        public void SetActiveCookie(string cookie)
+        {
+            const string LOG_IDENT = "CookiesManager::SetActiveCookie";
+
+            if (!Enabled)
+            {
+                State = CookieState.NotAllowed;
+                App.Logger.WriteLine(LOG_IDENT, "Cookie access not allowed");
+                return;
+            }
+
+            AuthCookie = cookie ?? string.Empty;
+            State = string.IsNullOrEmpty(AuthCookie) ? CookieState.Unknown : CookieState.Success;
+
+            try
+            {
+                WriteCookieToStore(AuthCookie);
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Failed to write cookie to store");
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
+        }
+
+        public void ClearActiveCookie()
+        {
+            const string LOG_IDENT = "CookiesManager::ClearActiveCookie";
+
+            AuthCookie = string.Empty;
+            State = CookieState.Unknown;
+
+            try
+            {
+                if (File.Exists(CookiesPath))
+                    File.Delete(CookiesPath);
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Failed to clear cookie store");
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
+        }
+
+        public async Task<AuthenticatedUser?> GetAuthenticatedForCookie(string cookie)
+        {
+            const string LOG_IDENT = "CookiesManager::GetAuthenticatedForCookie";
+
+            if (!Enabled)
+                return null;
+
+            if (string.IsNullOrWhiteSpace(cookie))
+                return null;
+
+            try
+            {
+                Uri apiUrl = UrlBuilder.BuildApiUrl("users", "v1/users/authenticated");
+                var request = new HttpRequestMessage { RequestUri = apiUrl, Method = HttpMethod.Get };
+                request.Headers.Add("Cookie", $".ROBLOSECURITY={cookie}");
+
+                HttpResponseMessage response = await App.HttpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+
+                string content = await response.Content.ReadAsStringAsync();
+                AuthenticatedUser? user = JsonSerializer.Deserialize<AuthenticatedUser>(content);
+
+                if (user is null || user.Id == 0)
+                    return null;
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Failed to validate cookie");
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
+
+            return null;
+        }
+
+        private void WriteCookieToStore(string cookie)
+        {
+
+            string rawCookies = $"\t{AuthCookieName}\t{cookie};";
+            byte[] unencryptedData = Encoding.UTF8.GetBytes(rawCookies);
+            byte[] encryptedData = ProtectedData.Protect(unencryptedData, null, DataProtectionScope.CurrentUser);
+
+            var cookies = new RobloxCookies
+            {
+                Version = SupportedVersion,
+                Cookies = Convert.ToBase64String(encryptedData)
+            };
+
+            string? directory = Path.GetDirectoryName(CookiesPath);
+            if (!string.IsNullOrEmpty(directory))
+                Directory.CreateDirectory(directory);
+
+            File.WriteAllText(CookiesPath, JsonSerializer.Serialize(cookies));
+        }
 
         public async Task<AuthenticatedUser?> GetAuthenticated()
         {

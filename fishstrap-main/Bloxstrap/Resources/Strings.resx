@@ -1865,4 +1865,52 @@ Defaulting to {1}.</value>
   <data name="Menu.Integrations.StatusDisplay.Description" xml:space="preserve">
     <value>Select the type of status display you want.</value>
   </data>
+  <data name="Menu.Behaviour.MultiInstance.Title" xml:space="preserve">
+    <value>Multi-instance launching</value>
+  </data>
+	<data name="Menu.Behaviour.MultiInstance.Description" xml:space="preserve">
+    <value>Allow multiple instances of Roblox to run at the same time.</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.Title" xml:space="preserve">
+    <value>Account manager</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.Description" xml:space="preserve">
+    <value>Manage the accounts used by running Roblox instances. Stored cookies are encrypted and never leave your device.</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.AddAccount" xml:space="preserve">
+    <value>Add account</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.Logout" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.SignedOut" xml:space="preserve">
+    <value>Not signed in</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.NoInstances" xml:space="preserve">
+    <value>No running Roblox instances were found.</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.NoAccounts" xml:space="preserve">
+    <value>No accounts have been added yet. Add an account first.</value>
+  </data>
+	<data name="Menu.Behaviour.AccountManager.AddFailed" xml:space="preserve">
+    <value>The provided cookie could not be validated. Please check it and try again.</value>
+  </data>
+	<data name="Dialog.AddAccount.Title" xml:space="preserve">
+    <value>Add account</value>
+  </data>
+	<data name="Dialog.AddAccount.Description" xml:space="preserve">
+    <value>Paste the .ROBLOSECURITY cookie for the account you want to add. The cookie is validated against Roblox and then stored encrypted on your device.</value>
+  </data>
+	<data name="Dialog.AddAccount.CookieLabel" xml:space="preserve">
+    <value>.ROBLOSECURITY cookie</value>
+  </data>
 </root>

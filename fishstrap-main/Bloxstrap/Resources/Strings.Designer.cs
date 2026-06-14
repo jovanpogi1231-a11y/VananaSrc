@@ -5010,5 +5010,132 @@ namespace Bloxstrap.Resources {
                 return ResourceManager.GetString("Uninstaller.Uninstall", resourceCulture);
             }
         }
+        public static string Menu_Behaviour_MultiInstance_Title
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.MultiInstance.Title", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_MultiInstance_Description
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.MultiInstance.Description", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_Title
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.Title", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_Description
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.Description", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_AddAccount
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.AddAccount", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_Refresh
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.Refresh", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_Login
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.Login", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_Logout
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.Logout", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_Remove
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.Remove", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_SignedOut
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.SignedOut", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_NoInstances
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.NoInstances", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_NoAccounts
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.NoAccounts", resourceCulture);
+            }
+        }
+
+        public static string Menu_Behaviour_AccountManager_AddFailed
+        {
+            get
+            {
+                return ResourceManager.GetString("Menu.Behaviour.AccountManager.AddFailed", resourceCulture);
+            }
+        }
+
+        public static string Dialog_AddAccount_Title
+        {
+            get
+            {
+                return ResourceManager.GetString("Dialog.AddAccount.Title", resourceCulture);
+            }
+        }
+
+        public static string Dialog_AddAccount_Description
+        {
+            get
+            {
+                return ResourceManager.GetString("Dialog.AddAccount.Description", resourceCulture);
+            }
+        }
+
+        public static string Dialog_AddAccount_CookieLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("Dialog.AddAccount.CookieLabel", resourceCulture);
+            }
+        }
     }
 }
