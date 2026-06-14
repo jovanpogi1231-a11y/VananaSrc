@@ -176,6 +176,39 @@ namespace Bloxstrap
             }
         }
 
+        /// <summary>
+        /// Activates the given account's cookie and launches Roblox as that account.
+        /// </summary>
+        public bool PlayAs(long userId)
+        {
+            const string LOG_IDENT = "AccountManager::PlayAs";
+
+            // Make the account the active session first. Login() writes the
+            // account's cookie into the Roblox cookie store, which is what
+            // RobloxPlayerBeta reads on launch.
+            if (!Login(userId))
+            {
+                App.Logger.WriteLine(LOG_IDENT, $"Could not activate account {userId} before launch");
+                return false;
+            }
+
+            try
+            {
+                var account = Accounts.FirstOrDefault(a => a.UserId == userId);
+                App.Logger.WriteLine(LOG_IDENT, $"Launching Roblox as {account?.Username} ({userId})");
+
+                // Launch Roblox the same way the settings "Save and launch"
+                // button does: re-run VanStrap in player mode.
+                Process.Start(Paths.Application, "-player");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+                return false;
+            }
+        }
+
         /// </summary>
 
         public void Logout()

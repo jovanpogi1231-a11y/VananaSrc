@@ -15,21 +15,25 @@ namespace Bloxstrap.UI.ViewModels.Settings
 		private readonly Action<RobloxInstanceViewModel> _onLogin;
 		private readonly Action<RobloxInstanceViewModel> _onLogout;
 		private readonly Action<RobloxInstanceViewModel> _onRemove;
+		private readonly Action<RobloxInstanceViewModel> _onPlay;
 
 		public RobloxInstanceViewModel(
 			RobloxInstance? instance,
 			Action<RobloxInstanceViewModel> onLogin,
 			Action<RobloxInstanceViewModel> onLogout,
-			Action<RobloxInstanceViewModel> onRemove)
+			Action<RobloxInstanceViewModel> onRemove,
+			Action<RobloxInstanceViewModel> onPlay)
 		{
 			_instance = instance;
 			_onLogin = onLogin;
 			_onLogout = onLogout;
 			_onRemove = onRemove;
+			_onPlay = onPlay;
 
 			LoginCommand = new RelayCommand(() => _onLogin(this));
 			LogoutCommand = new RelayCommand(() => _onLogout(this));
 			RemoveCommand = new RelayCommand(() => _onRemove(this));
+			PlayCommand = new RelayCommand(() => _onPlay(this));
 		}
 
 		public int ProcessId => _instance?.ProcessId ?? 0;
@@ -86,5 +90,6 @@ namespace Bloxstrap.UI.ViewModels.Settings
 		public ICommand LoginCommand { get; }
 		public ICommand LogoutCommand { get; }
 		public ICommand RemoveCommand { get; }
+		public ICommand PlayCommand { get; }
 	}
 }
