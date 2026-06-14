@@ -16,9 +16,88 @@
     <StackPanel Margin="0,0,14,14">
 
         <controls:OptionControl
+            Header="Confirm launches"
+            Description="Ask for confirmation before launching Roblox when an instance is already open.">
+            <ui:ToggleSwitch IsChecked="{Binding ConfirmLaunches, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl
+            Header="Force Roblox language"
+            Description="Force Roblox to use the same language as your system.">
+            <ui:ToggleSwitch IsChecked="{Binding ForceRobloxLanguage, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl
+            Header="Background updates"
+            Description="Allow Roblox to update in the background.">
+            <ui:ToggleSwitch IsChecked="{Binding BackgroundUpdates, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl
             Header="Multi-instance launching"
             Description="Allow more than one Roblox instance to run at the same time.">
             <ui:ToggleSwitch IsChecked="{Binding MultiInstanceLaunching, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <ui:CardExpander Margin="0,8,0,0" IsExpanded="False">
+            <ui:CardExpander.Header>
+                <StackPanel>
+                    <TextBlock FontSize="14" Text="Clean up" />
+                    <TextBlock Margin="0,2,0,0" FontSize="12" Text="Automatically remove old Roblox files to free up disk space." Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+                </StackPanel>
+            </ui:CardExpander.Header>
+            <StackPanel>
+                <controls:OptionControl
+                    Header="Maximum age"
+                    Description="How old files must be before they are cleaned up.">
+                    <ComboBox Width="200" Padding="10,5,10,5" ItemsSource="{Binding CleanerOptions, Mode=OneTime}" Text="{Binding CleanerOption, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=., Converter={StaticResource EnumNameConverter}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </controls:OptionControl>
+                <controls:OptionControl Header="Roblox cache" Description="Clean up the Roblox HTTP cache.">
+                    <ui:ToggleSwitch IsChecked="{Binding CleanerCache, Mode=TwoWay}" />
+                </controls:OptionControl>
+                <controls:OptionControl Header="Roblox Studio cache" Description="Clean up the Roblox Studio cache.">
+                    <ui:ToggleSwitch IsChecked="{Binding CleanerStudioCache, Mode=TwoWay}" />
+                </controls:OptionControl>
+                <controls:OptionControl Header="Logs" Description="Clean up old Roblox log files.">
+                    <ui:ToggleSwitch IsChecked="{Binding CleanerLogs, Mode=TwoWay}" />
+                </controls:OptionControl>
+                <controls:OptionControl Header="Include VanStrap logs" Description="Also clean up VanStrap's own logs.">
+                    <ui:ToggleSwitch IsChecked="{Binding CleanerVanStrap, Mode=TwoWay}" />
+                </controls:OptionControl>
+            </StackPanel>
+        </ui:CardExpander>
+
+        <TextBlock Text="Experimental" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
+        <TextBlock
+            Margin="0,2,0,0"
+            FontSize="12"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            TextWrapping="Wrap"
+            Text="A collection of experimental settings. Be careful while using them, as they may or may not work as intended." />
+
+        <controls:OptionControl
+            Header="Better matchmaking"
+            Description="Improves how Roblox selects servers when joining games.">
+            <ui:ToggleSwitch IsChecked="{Binding EnableBetterMatchmaking, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl
+            Header="Randomize server"
+            Description="Pick a random server instead of the default one when joining games.">
+            <ui:ToggleSwitch IsChecked="{Binding EnableBetterMatchmakingRandomization, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl
+            Header="Enable Borderless Fullscreen for Vulkan"
+            Description="Let's you use a fake version of borderless fullscreen while using Vulkan."
+            IsEnabled="{Binding VulkanFullscreenAllowed, Mode=OneWay}">
+            <ui:ToggleSwitch IsChecked="{Binding EnableFakeBorderlessFullscreen, Mode=TwoWay}" />
         </controls:OptionControl>
 
         <controls:OptionControl
