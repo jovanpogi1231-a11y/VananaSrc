@@ -106,6 +106,73 @@ namespace Bloxstrap
             }
         }
 
+        /// <summary>
+        /// Requests a one-time authentication ticket for the given account cookie.
+        /// This ticket can be passed to RobloxPlayerBeta via the launch command
+        /// line (gameinfo:&lt;ticket&gt;) to start the client logged in as that
+        /// account, without touching the shared cookie store. This is how a
+        /// dedicated account manager launches a specific account.
+        /// </summary>
+        public async Task<string?> GetAuthTicketAsync(string cookie)
+        {
+            const string LOG_IDENT = "CookiesManager::GetAuthTicketAsync";
+
+            if (string.IsNullOrWhiteSpace(cookie))
+                return null;
+
+            try
+            {
+                // Roblox requires a CSRF token for the ticket endpoint. An
+                // unauthenticated POST returns one in the x-csrf-token header.
+                Uri ticketUrl = new("https://auth.roblox.com/v1/authentication-ticket/");
+
+                string? csrfToken = null;
+                using (var probe = new HttpRequestMessage(HttpMethod.Post, ticketUrl))
+                {
+                    probe.Headers.Add("Cookie", $".ROBLOSECURITY={cookie}");
+                    probe.Headers.Add("Referer", "https://www.roblox.com/");
+                    probe.Headers.Add("Origin", "https://www.roblox.com");
+
+                    var probeResponse = await App.HttpClient.SendAsync(probe);
+                    if (probeResponse.Headers.TryGetValues("x-csrf-token", out var values))
+                        csrfToken = values.FirstOrDefault();
+                }
+
+                if (string.IsNullOrEmpty(csrfToken))
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "Failed to obtain CSRF token");
+                    return null;
+                }
+
+                using var request = new HttpRequestMessage(HttpMethod.Post, ticketUrl);
+                request.Headers.Add("Cookie", $".ROBLOSECURITY={cookie}");
+                request.Headers.Add("x-csrf-token", csrfToken);
+                request.Headers.Add("Referer", "https://www.roblox.com/");
+                request.Headers.Add("Origin", "https://www.roblox.com");
+                request.Headers.Add("RBXAuthenticationNegotiation", "1");
+                request.Content = new StringContent(string.Empty);
+
+                var response = await App.HttpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+
+                if (response.Headers.TryGetValues("rbx-authentication-ticket", out var ticketValues))
+                {
+                    string? ticket = ticketValues.FirstOrDefault();
+                    if (!string.IsNullOrEmpty(ticket))
+                        return ticket;
+                }
+
+                App.Logger.WriteLine(LOG_IDENT, "Response did not contain an authentication ticket");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Failed to get authentication ticket");
+                App.Logger.WriteException(LOG_IDENT, ex);
+                return null;
+            }
+        }
+
         public async Task<AuthenticatedUser?> GetAuthenticatedForCookie(string cookie)
         {
             const string LOG_IDENT = "CookiesManager::GetAuthenticatedForCookie";

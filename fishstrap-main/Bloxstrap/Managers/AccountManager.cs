@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using Bloxstrap.Models;
 
@@ -9,15 +11,115 @@ namespace Bloxstrap
     {
         public ObservableCollection<ManagedAccount> Accounts { get; } = new();
 
+        // Tracks which managed account (user ID) launched which Roblox process.
+        // Lets the account manager show the correct account for a running PID.
+        private readonly Dictionary<int, long> _processAccountMap = new();
+
+        private static string AccountsPath => Path.Combine(Paths.Base, "Accounts.json");
+
+        private bool _loaded;
+
         public void Load()
         {
-            // Load saved accounts from disk if needed
-            // Extend this when you have persistent storage
+            const string LOG_IDENT = "AccountManager::Load";
+
+            // Only load once per session; the store is the source of truth and
+            // is kept in sync via Save().
+            if (_loaded)
+                return;
+
+            try
+            {
+                if (!Paths.Initialized || !File.Exists(AccountsPath))
+                {
+                    _loaded = true;
+                    return;
+                }
+
+                string json = File.ReadAllText(AccountsPath);
+                var stored = JsonSerializer.Deserialize<List<ManagedAccount>>(json);
+
+                Accounts.Clear();
+
+                if (stored is not null)
+                {
+                    foreach (var account in stored)
+                    {
+                        // Cookies are stored DPAPI-encrypted at rest; decrypt
+                        // back to the raw value used in memory.
+                        account.EncryptedCookie = Decrypt(account.EncryptedCookie);
+
+                        if (string.IsNullOrEmpty(account.EncryptedCookie))
+                            continue;
+
+                        Accounts.Add(account);
+                    }
+                }
+
+                _loaded = true;
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+                _loaded = true;
+            }
         }
 
         public void Save()
         {
-            // Persist accounts to disk if needed
+            const string LOG_IDENT = "AccountManager::Save";
+
+            try
+            {
+                if (!Paths.Initialized)
+                    return;
+
+                // Serialize a copy with the cookie encrypted at rest. We must
+                // not mutate the in-memory accounts (they hold the raw cookie).
+                var toStore = Accounts.Select(a => new ManagedAccount
+                {
+                    UserId = a.UserId,
+                    Username = a.Username,
+                    DisplayName = a.DisplayName,
+                    EncryptedCookie = Encrypt(a.EncryptedCookie)
+                }).ToList();
+
+                string json = JsonSerializer.Serialize(toStore);
+                File.WriteAllText(AccountsPath, json);
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
+        }
+
+        private static string Encrypt(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
+            byte[] data = Encoding.UTF8.GetBytes(value);
+            byte[] encrypted = ProtectedData.Protect(data, null, DataProtectionScope.CurrentUser);
+            return Convert.ToBase64String(encrypted);
+        }
+
+        private static string Decrypt(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
+            try
+            {
+                byte[] encrypted = Convert.FromBase64String(value);
+                byte[] data = ProtectedData.Unprotect(encrypted, null, DataProtectionScope.CurrentUser);
+                return Encoding.UTF8.GetString(data);
+            }
+            catch
+            {
+                // Either not encrypted (legacy/raw) or undecryptable on this
+                // machine/user. Treat raw values as-is for backwards compat.
+                return value;
+            }
         }
 
         public List<RobloxInstance> GetRunningInstances()
@@ -45,10 +147,13 @@ namespace Bloxstrap
                     if (proc.HasExited)
                         continue;
 
+                    _processAccountMap.TryGetValue(proc.Id, out long mappedUserId);
+
                     instances.Add(new RobloxInstance
                     {
                         ProcessId = proc.Id,
-                        WindowHandle = proc.MainWindowHandle.ToInt64()
+                        WindowHandle = proc.MainWindowHandle.ToInt64(),
+                        AccountUserId = mappedUserId
                     });
                 }
 
@@ -179,33 +284,159 @@ namespace Bloxstrap
         /// <summary>
         /// Activates the given account's cookie and launches Roblox as that account.
         /// </summary>
-        public bool PlayAs(long userId)
+        public async Task<bool> PlayAs(long userId)
         {
             const string LOG_IDENT = "AccountManager::PlayAs";
 
-            // Make the account the active session first. Login() writes the
-            // account's cookie into the Roblox cookie store, which is what
-            // RobloxPlayerBeta reads on launch.
-            if (!Login(userId))
+            var account = Accounts.FirstOrDefault(a => a.UserId == userId);
+            if (account is null)
             {
-                App.Logger.WriteLine(LOG_IDENT, $"Could not activate account {userId} before launch");
+                App.Logger.WriteLine(LOG_IDENT, $"No account found for {userId}");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(account.EncryptedCookie))
+            {
+                App.Logger.WriteLine(LOG_IDENT, $"No stored cookie for {account.Username} ({userId})");
                 return false;
             }
 
             try
             {
-                var account = Accounts.FirstOrDefault(a => a.UserId == userId);
-                App.Logger.WriteLine(LOG_IDENT, $"Launching Roblox as {account?.Username} ({userId})");
+                App.Logger.WriteLine(LOG_IDENT, $"Requesting auth ticket for {account.Username} ({userId})");
 
-                // Launch Roblox the same way the settings "Save and launch"
-                // button does: re-run VanStrap in player mode.
-                Process.Start(Paths.Application, "-player");
+                // Fetch a one-time authentication ticket for this account's
+                // cookie. Passing it on the launch command line is what makes
+                // RobloxPlayerBeta start logged in as the chosen account,
+                // independent of whatever cookie is in the shared store.
+                string? ticket = await App.Cookies.GetAuthTicketAsync(account.EncryptedCookie);
+
+                if (string.IsNullOrEmpty(ticket))
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "Could not get an authentication ticket (cookie may be expired)");
+                    return false;
+                }
+
+                string executablePath = GetPlayerExecutablePath();
+                if (string.IsNullOrEmpty(executablePath) || !File.Exists(executablePath))
+                {
+                    App.Logger.WriteLine(LOG_IDENT, $"Roblox player executable not found at '{executablePath}'");
+                    return false;
+                }
+
+                // Build the launch command line the same shape the Roblox
+                // website uses. Without a place, the client opens to the home
+                // page already authenticated.
+                long launchTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                string launchUrl =
+                    "roblox-player:1" +
+                    "+launchmode:play" +
+                    "+gameinfo:" + ticket +
+                    "+launchtime:" + launchTime +
+                    "+placelauncherurl:" +
+                    "+browsertrackerid:" +
+                    "+robloxLocale:en_us" +
+                    "+gameLocale:en_us";
+
+
+                App.Logger.WriteLine(LOG_IDENT, $"Launching Roblox as {account.Username} ({userId})");
+
+                // Snapshot existing Roblox PIDs so we can identify the new one.
+                var before = new HashSet<int>();
+                foreach (var p in Process.GetProcessesByName("RobloxPlayerBeta"))
+                {
+                    before.Add(p.Id);
+                    p.Dispose();
+                }
+
+
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = executablePath,
+                    Arguments = launchUrl,
+                    WorkingDirectory = Path.GetDirectoryName(executablePath)!,
+                    UseShellExecute = false
+                };
+
+                Process.Start(startInfo);
+
+                // Multi-instance support: launch the watcher so the singleton
+                // mutex is released, allowing additional accounts to run.
+                if (App.Settings.Prop.MultiInstanceLaunching)
+                    StartMultiInstanceWatcher();
+
+                // Associate the newly spawned process with this account so the
+                // UI shows the correct account instead of "no account assigned".
+                _ = Task.Run(() => TrackLaunchedProcess(userId, before));
+
                 return true;
             }
             catch (Exception ex)
             {
                 App.Logger.WriteException(LOG_IDENT, ex);
                 return false;
+            }
+        }
+        private static string GetPlayerExecutablePath()
+        {
+            try
+            {
+                var appData = new AppData.RobloxPlayerData();
+                return appData.ExecutablePath;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        private static void StartMultiInstanceWatcher()
+        {
+            const string LOG_IDENT = "AccountManager::StartMultiInstanceWatcher";
+
+            try
+            {
+                Process.Start(Paths.Application, "-multiinstancewatcher");
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
+        }
+
+        private void TrackLaunchedProcess(long userId, HashSet<int> existingPids)
+        {
+            const string LOG_IDENT = "AccountManager::TrackLaunchedProcess";
+
+            try
+            {
+                // Poll up to ~60s; the bootstrapper may need to update/extract
+                // before Roblox actually starts.
+                for (int i = 0; i < 120; i++)
+                {
+                    var processes = Process.GetProcessesByName("RobloxPlayerBeta");
+                    int? newPid = null;
+
+                    foreach (var p in processes)
+                    {
+                        if (!existingPids.Contains(p.Id))
+                            newPid = p.Id;
+                        p.Dispose();
+                    }
+
+                    if (newPid is not null)
+                    {
+                        _processAccountMap[newPid.Value] = userId;
+                        App.Logger.WriteLine(LOG_IDENT, $"Mapped PID {newPid} to account {userId}");
+                        return;
+                    }
+
+                    Thread.Sleep(500);
+                }
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
             }
         }
 

@@ -144,7 +144,19 @@ namespace Bloxstrap.UI.ViewModels.Settings
                             OnInstanceRemove,
                             OnInstancePlay);
 
-                        if (activeUser is not null && !RobloxInstances.Any(x => x.AccountUserId == activeUser.Id))
+                        // Prefer the account that actually launched this process
+                        // (tracked via PlayAs). Fall back to the active session.
+                        var trackedAccount = instance.AccountUserId != 0
+                            ? savedAccounts.FirstOrDefault(a => a.UserId == instance.AccountUserId)
+                            : null;
+
+                        if (trackedAccount is not null)
+                        {
+                            vm.AccountUserId = trackedAccount.UserId;
+                            vm.Username = trackedAccount.Username;
+                            vm.DisplayName = trackedAccount.DisplayName;
+                        }
+                        else if (activeUser is not null && !RobloxInstances.Any(x => x.AccountUserId == activeUser.Id))
                         {
                             vm.AccountUserId = activeUser.Id;
                             vm.Username = activeUser.Username;
@@ -254,7 +266,7 @@ namespace Bloxstrap.UI.ViewModels.Settings
             }
         }
 
-        private void OnInstancePlay(RobloxInstanceViewModel vm)
+        private async void OnInstancePlay(RobloxInstanceViewModel vm)
         {
             if (vm.AccountUserId == 0)
             {
@@ -262,7 +274,8 @@ namespace Bloxstrap.UI.ViewModels.Settings
                 return;
             }
 
-            if (!App.Accounts.PlayAs(vm.AccountUserId))
+            bool launched = await App.Accounts.PlayAs(vm.AccountUserId);
+            if (!launched)
                 Frontend.ShowMessageBox(Strings.Menu_Behaviour_AccountManager_AddFailed, MessageBoxImage.Error);
         }
 
