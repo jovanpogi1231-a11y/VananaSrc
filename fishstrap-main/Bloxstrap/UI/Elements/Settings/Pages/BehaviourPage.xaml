@@ -204,6 +204,23 @@
 
                             <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                                 <ui:Button
+                                    Icon="Play24"
+                                    Content="Play"
+                                    Appearance="Primary"
+                                    Command="{Binding PlayCommand}"
+                                    Margin="0,0,8,0">
+                                    <ui:Button.Style>
+                                        <Style TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding HasAccount}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ui:Button.Style>
+                                </ui:Button>
+                                <ui:Button
                                     Icon="PersonAvailable24"
                                     Content="Log in"
                                     Command="{Binding LoginCommand}" />

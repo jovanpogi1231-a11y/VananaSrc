@@ -122,7 +122,8 @@ namespace Bloxstrap.UI.ViewModels.Settings
                             null,
                             OnInstanceLogin,
                             OnInstanceLogout,
-                            OnInstanceRemove)
+                            OnInstanceRemove,
+                            OnInstancePlay)
                         {
                             AccountUserId = account.UserId,
                             Username = account.Username,
@@ -140,7 +141,8 @@ namespace Bloxstrap.UI.ViewModels.Settings
                             instance,
                             OnInstanceLogin,
                             OnInstanceLogout,
-                            OnInstanceRemove);
+                            OnInstanceRemove,
+                            OnInstancePlay);
 
                         if (activeUser is not null && !RobloxInstances.Any(x => x.AccountUserId == activeUser.Id))
                         {
@@ -250,6 +252,18 @@ namespace Bloxstrap.UI.ViewModels.Settings
                 vm.DisplayName = account.DisplayName;
                 _ = LoadAvatarsAsync();
             }
+        }
+
+        private void OnInstancePlay(RobloxInstanceViewModel vm)
+        {
+            if (vm.AccountUserId == 0)
+            {
+                Frontend.ShowMessageBox(Strings.Menu_Behaviour_AccountManager_NoAccounts, MessageBoxImage.Information);
+                return;
+            }
+
+            if (!App.Accounts.PlayAs(vm.AccountUserId))
+                Frontend.ShowMessageBox(Strings.Menu_Behaviour_AccountManager_AddFailed, MessageBoxImage.Error);
         }
 
         private void OnInstanceLogout(RobloxInstanceViewModel vm)
