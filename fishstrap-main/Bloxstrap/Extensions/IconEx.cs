@@ -25,7 +25,7 @@ namespace Bloxstrap.Extensions
                 {
                     App.Logger.WriteException("IconEx::GetImageSource", ex);
                     Frontend.ShowMessageBox(string.Format(Strings.Dialog_IconLoadFailed, ex.Message));
-                    return BootstrapperIcon.IconBloxstrap.GetIcon().GetImageSource(false);
+                    return BootstrapperIcon.IconVanStrap.GetIcon().GetImageSource(false);
                 }
             }
             else
