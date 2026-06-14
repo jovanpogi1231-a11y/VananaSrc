@@ -11,13 +11,13 @@ namespace Bloxstrap.UI.ViewModels.Settings
 {
 	public class RobloxInstanceViewModel : NotifyPropertyChangedViewModel
 	{
-		private readonly RobloxInstance _instance;
+		private readonly RobloxInstance? _instance;
 		private readonly Action<RobloxInstanceViewModel> _onLogin;
 		private readonly Action<RobloxInstanceViewModel> _onLogout;
 		private readonly Action<RobloxInstanceViewModel> _onRemove;
 
 		public RobloxInstanceViewModel(
-			RobloxInstance instance,
+			RobloxInstance? instance,
 			Action<RobloxInstanceViewModel> onLogin,
 			Action<RobloxInstanceViewModel> onLogout,
 			Action<RobloxInstanceViewModel> onRemove)
@@ -32,8 +32,9 @@ namespace Bloxstrap.UI.ViewModels.Settings
 			RemoveCommand = new RelayCommand(() => _onRemove(this));
 		}
 
-		public int ProcessId => _instance.ProcessId;
-		public long WindowHandle => _instance.WindowHandle;
+		public int ProcessId => _instance?.ProcessId ?? 0;
+		public long WindowHandle => _instance?.WindowHandle ?? 0;
+		public bool IsRunning => _instance is not null;
 
 		private long _accountUserId;
 		public long AccountUserId
