@@ -98,7 +98,11 @@ namespace Bloxstrap.UI.ViewModels.Settings
                     return;
                 }
 
+                // Make sure saved accounts are loaded from disk before we render.
+                App.Accounts.Load();
+
                 var instances = App.Accounts.GetRunningInstances();
+                var savedAccounts = App.Accounts.Accounts.ToList();
 
                 AuthenticatedUser? activeUser = null;
                 string? activeCookie = App.Cookies.GetActiveCookie();
@@ -109,6 +113,27 @@ namespace Bloxstrap.UI.ViewModels.Settings
                 {
                     RobloxInstances.Clear();
 
+                    // 1. Always show every saved account, even when no Roblox
+                    //    process is running. This is what makes a freshly added
+                    //    account appear immediately after the WebView login.
+                    foreach (var account in savedAccounts)
+                    {
+                        var vm = new RobloxInstanceViewModel(
+                            null,
+                            OnInstanceLogin,
+                            OnInstanceLogout,
+                            OnInstanceRemove)
+                        {
+                            AccountUserId = account.UserId,
+                            Username = account.Username,
+                            DisplayName = account.DisplayName
+                        };
+
+                        RobloxInstances.Add(vm);
+                    }
+
+                    // 2. Show running instances that aren't already represented
+                    //    by a saved account.
                     foreach (var instance in instances)
                     {
                         var vm = new RobloxInstanceViewModel(
@@ -117,7 +142,7 @@ namespace Bloxstrap.UI.ViewModels.Settings
                             OnInstanceLogout,
                             OnInstanceRemove);
 
-                        if (activeUser is not null)
+                        if (activeUser is not null && !RobloxInstances.Any(x => x.AccountUserId == activeUser.Id))
                         {
                             vm.AccountUserId = activeUser.Id;
                             vm.Username = activeUser.Username;
