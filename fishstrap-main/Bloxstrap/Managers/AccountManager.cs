@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.Json;
+using Bloxstrap.Models;
 
 namespace Bloxstrap
 {
@@ -19,32 +20,51 @@ namespace Bloxstrap
             // Persist accounts to disk if needed
         }
 
-        /// <summary>
-        /// Returns all currently running Roblox instances as RobloxInstance objects.
-        /// </summary>
         public List<RobloxInstance> GetRunningInstances()
         {
             var instances = new List<RobloxInstance>();
 
-            foreach (var proc in Process.GetProcessesByName("RobloxPlayerBeta"))
+            const string LOG_IDENT = "AccountManager::GetRunningInstances";
+
+            Process[] processes;
+            try
+            {
+                processes = Process.GetProcessesByName("RobloxPlayerBeta");
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+                return instances;
+            }
+
+            foreach (var proc in processes)
             {
                 try
                 {
+
+                    if (proc.HasExited)
+                        continue;
+
                     instances.Add(new RobloxInstance
                     {
                         ProcessId = proc.Id,
                         WindowHandle = proc.MainWindowHandle.ToInt64()
                     });
                 }
-                catch { /* process may have exited */ }
+
+                catch (Exception ex)
+                {
+                    App.Logger.WriteException(LOG_IDENT, ex);
+                }
+                finally
+                {
+                    try { proc.Dispose(); } catch { }
+                }
             }
 
             return instances;
         }
 
-        /// <summary>
-        /// Fetches avatar headshot URLs for the given user IDs.
-        /// </summary>
         public async Task<Dictionary<long, string>> GetAvatarsAsync(List<long> userIds, CancellationToken cancellationToken)
         {
             var result = new Dictionary<long, string>();
@@ -82,9 +102,6 @@ namespace Bloxstrap
             return result;
         }
 
-        /// <summary>
-        /// Validates the cookie, fetches user info, and adds the account.
-        /// </summary>
         public async Task<ManagedAccount?> AddAccountAsync(string cookie)
         {
             try
@@ -111,7 +128,6 @@ namespace Bloxstrap
                     EncryptedCookie = cookie // store raw for now, encrypt later if needed
                 };
 
-                // avoid duplicates
                 var existing = Accounts.FirstOrDefault(a => a.UserId == userId);
                 if (existing is not null)
                     Accounts.Remove(existing);
@@ -129,40 +145,57 @@ namespace Bloxstrap
         }
 
         /// <summary>
-        /// Sets the active Roblox cookie for the given user ID.
+        /// Sets the active Roblox cookie for the given user ID by swapping it
+        /// into the CookiesManager store.
         /// </summary>
+
         public bool Login(long userId)
         {
+            const string LOG_IDENT = "AccountManager::Login";
+
             var account = Accounts.FirstOrDefault(a => a.UserId == userId);
             if (account is null)
                 return false;
 
+            if (string.IsNullOrEmpty(account.EncryptedCookie))
+            {
+                App.Logger.WriteLine(LOG_IDENT, $"No stored cookie for {account.Username} ({userId})");
+                return false;
+            }
+
             try
             {
-                // Set the active cookie via CookiesManager
-                // Extend this if you have a proper cookie-switching mechanism
-                App.Logger.WriteLine("AccountManager::Login", $"Logging in as {account.Username} ({userId})");
+                App.Logger.WriteLine(LOG_IDENT, $"Logging in as {account.Username} ({userId})");
+                App.Cookies.SetActiveCookie(account.EncryptedCookie);
                 return true;
             }
             catch (Exception ex)
             {
-                App.Logger.WriteException("AccountManager::Login", ex);
+                App.Logger.WriteException(LOG_IDENT, ex);
                 return false;
             }
         }
 
-        /// <summary>
-        /// Clears the active session.
         /// </summary>
+
         public void Logout()
         {
-            App.Logger.WriteLine("AccountManager::Logout", "Logging out current session");
-            // Extend this to actually clear the active cookie if needed
+            const string LOG_IDENT = "AccountManager::Logout";
+
+            App.Logger.WriteLine(LOG_IDENT, "Logging out current session");
+
+            try
+            {
+                App.Cookies.ClearActiveCookie();
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
         }
 
         /// <summary>
-        /// Removes an account from the managed list.
-        /// </summary>
+
         public void RemoveAccount(long userId)
         {
             var account = Accounts.FirstOrDefault(a => a.UserId == userId);

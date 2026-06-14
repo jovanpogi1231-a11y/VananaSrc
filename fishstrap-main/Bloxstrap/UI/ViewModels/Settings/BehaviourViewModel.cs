@@ -82,54 +82,68 @@ namespace Bloxstrap.UI.ViewModels.Settings
 
         private async Task RefreshInstancesAsync()
         {
-            if (!CookieAccess)
+            // This can run fire-and-forget from OnNavigatedTo while Roblox is
+            // running. Any unhandled exception here would reach
+            // App.GlobalExceptionHandler and terminate the app, so we must
+            // never let one escape.
+            try
             {
+                if (!CookieAccess)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        RobloxInstances.Clear();
+                        HasRunningInstances = false;
+                    });
+                    return;
+                }
+
+                var instances = App.Accounts.GetRunningInstances();
+
+                AuthenticatedUser? activeUser = null;
+                string? activeCookie = App.Cookies.GetActiveCookie();
+                if (activeCookie is not null)
+                    activeUser = await App.Cookies.GetAuthenticatedForCookie(activeCookie);
+
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     RobloxInstances.Clear();
-                    HasRunningInstances = false;
-                });
-                return;
-            }
 
-            var instances = App.Accounts.GetRunningInstances();
-
-            AuthenticatedUser? activeUser = null;
-            string? activeCookie = App.Cookies.GetActiveCookie();
-            if (activeCookie is not null)
-                activeUser = await App.Cookies.GetAuthenticatedForCookie(activeCookie);
-
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                RobloxInstances.Clear();
-
-                foreach (var instance in instances)
-                {
-                    var vm = new RobloxInstanceViewModel(
-                        instance,
-                        OnInstanceLogin,
-                        OnInstanceLogout,
-                        OnInstanceRemove);
-
-                    if (activeUser is not null)
+                    foreach (var instance in instances)
                     {
-                        vm.AccountUserId = activeUser.Id;
-                        vm.Username = activeUser.Username;
-                        vm.DisplayName = activeUser.Displayname;
+                        var vm = new RobloxInstanceViewModel(
+                            instance,
+                            OnInstanceLogin,
+                            OnInstanceLogout,
+                            OnInstanceRemove);
+
+                        if (activeUser is not null)
+                        {
+                            vm.AccountUserId = activeUser.Id;
+                            vm.Username = activeUser.Username;
+                            vm.DisplayName = activeUser.Displayname;
+                        }
+
+                        RobloxInstances.Add(vm);
                     }
 
-                    RobloxInstances.Add(vm);
-                }
+                    HasRunningInstances = RobloxInstances.Count > 0;
+                });
 
-                HasRunningInstances = RobloxInstances.Count > 0;
-            });
 
-            await LoadAvatarsAsync();
+                await LoadAvatarsAsync();
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException("BehaviourViewModel::RefreshInstancesAsync", ex);
+            }
         }
 
         private async Task LoadAvatarsAsync()
         {
-            var userIds = RobloxInstances
+            try
+            {
+                var userIds = RobloxInstances
                 .Where(x => x.AccountUserId != 0)
                 .Select(x => x.AccountUserId)
                 .ToList();
@@ -164,6 +178,11 @@ namespace Bloxstrap.UI.ViewModels.Settings
                     }
                 }
             });
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException("BehaviourViewModel::LoadAvatarsAsync", ex);
+            }
         }
 
         private async Task AddAccountAsync()
@@ -171,7 +190,7 @@ namespace Bloxstrap.UI.ViewModels.Settings
             if (!CookieAccess)
                 return;
 
-            var dialog = new AddAccountDialog();
+            var dialog = new WebLoginDialog();
             if (dialog.ShowDialog() != true)
                 return;
 
